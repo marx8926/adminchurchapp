@@ -11,6 +11,16 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
+//= require dataTables/extras/TableTools
+//= require dataTables/extras/ZeroClipboard

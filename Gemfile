@@ -5,12 +5,13 @@ ruby '1.9.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'sqlite3'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'ranked-model'
+gem 'jquery-datatables-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -23,6 +24,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-editable-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -46,3 +50,34 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem "bootstrap-timepicker-rails", "~> 0.1.3"
+gem 'bootstrap-sass'
+gem 'haml'
+gem 'haml-rails'
+gem 'RedCloth'
+gem 'devise'
+gem 'devise-encryptable'
+gem 'aws-sdk'
+gem 'paperclip'
+
+
+group :development, :test do
+  
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'html2haml'
+  gem 'hub', :require=>nil
+  gem 'quiet_assets'
+  gem 'rspec-rails'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'childprocess'
+  gem 'spork'
+  gem 'mysql2'
+end
+
+group :production do
+ gem 'sqlite3'
+end
