@@ -1,0 +1,287 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Buscar
+    %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
+      %i.icon-plus{style: "margin:0; "}
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        %form.form-horizontal
+          %fieldset
+            .control-group
+              %label.control-label{for: "filtro"} Filtro
+              .controls
+                %input#filtro.span2{style: "margin-right:20px;", type: "text"}/
+                %select#tipofiltro.span2{style: "margin-right:20px;"}
+                  %option{value: "1"} Nombre
+                  %option{value: "2"} Apellido
+                %button.btn.btn-primary{type: "submit"} Buscar
+              / /controls
+            / /control-group
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nombre y Apellido
+              %th Teléfono
+              %th Celular
+              %th Fecha de Conversión
+              %th.td-actions
+          %tbody
+            %tr
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td.td-actions
+                %a.btn.btn-success{href: "#"}
+                  %i.icon-edit
+                  Editar
+                %a.btn.btn-info{href: "Ganar-informe.html"}
+                  %i.icon-file-alt
+                  Informe
+  / Modal
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", href: "#personales"} Datos Personales
+          %li
+            %a{"data-toggle" => "tab", href: "#directorio"} Datos Directorio
+          %li
+            %a{"data-toggle" => "tab", href: "#redessociales"} Datos Redes Sociales
+          %li
+            %a{"data-toggle" => "tab", href: "#finales"} Datos Finales
+        %br/
+        %form#registrarGanado
+          .tab-content
+            #personales.tab-pane
+              .span3
+                .form-horizontal
+                  %fieldset
+                    .control-group
+                      %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+                      .controls{style: "margin-left: 90px;"}
+                        %input#nombre.span2{name: "nombre", type: "text"}/
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "estadocivil", style: "width:auto;"} Estado Civil
+                      .controls{style: "margin-left: 90px;"}
+                        %select#estadocivil.span2{name: "estadocivil"}
+                          %option{value: "1"} Soltero
+                          %option{value: "2"} Casado
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "dni", style: "width:auto;"} D.N.I.
+                      .controls{style: "margin-left: 90px;"}
+                        %input#dni.span2{name: "dni", type: "text"}/
+                      / /controls
+                    / /control-group
+              / /span3
+              .span3
+                .form-horizontal
+                  %fieldset
+                    .control-group
+                      %label.control-label{for: "apellido", style: "width:auto;"} Apellido
+                      .controls{style: "margin-left: 90px;"}
+                        %input#apellido.span2{name: "apellido", type: "text"}/
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "sexo", style: "width:auto;"} Sexo
+                      .controls{style: "margin-left: 90px;"}
+                        %select#sexo.span2{name: "sexo"}
+                          %option{value: "1"} Masculino
+                          %option{value: "2"} Femenino
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "ocupacion", style: "width:auto;"} Ocupación
+                      .controls{style: "margin-left: 90px;"}
+                        %input#ocupacion.span2{name: "ocupacion", type: "text"}/
+                      / /controls
+                    / /control-group
+              / /span3
+              .span3
+                .form-horizontal
+                  %fieldset
+                    .control-group
+                      %label.control-label{for: "edad", style: "width:auto;"} Edad
+                      .controls{style: "margin-left: 90px;"}
+                        %input#edad.span2{name: "edad", type: "text"}/
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "fec_nac", style: "width:auto;"} Fec. Nac.
+                      .controls{style: "margin-left: 90px;"}
+                        %input#fec_nac.span2.datepicker{name: "fec_nac", type: "text"}/
+                      / /controls
+                    / /control-group
+                    .control-group
+                      %label.control-label{for: "profesion", style: "width:auto;"} Profesión
+                      .controls{style: "margin-left: 90px;"}
+                        %input#profesion.span2{name: "profesion", type: "text"}/
+                      / /controls
+                    / /control-group
+              / /span3
+            / /FIN DATOS PERSONALES
+            #directorio.tab-pane
+              .form-horizontal
+                %fieldset
+                  .control-group
+                    %label.control-label{for: "telefono"} Teléfono
+                    .controls
+                      %input#telefono.span2{name: "telefono", style: "margin-right:20px;", type: "text"}/
+                      %label{style: "display: inline; margin-right:20px;"} Tipo
+                      %select#sexo.span2{name: "sexo"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                    / /controls
+                  / /control-group
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Teléfono
+                      %th Tipo
+                      %th.td-actions
+                  %tbody
+                    %tr
+                      %td 147258639
+                      %td Móvil
+                      %td.td-actions
+                        %a.btn.btn-danger{href: "#"}
+                          %i.icon-remove
+                          Eliminar
+                %fieldset
+                  .control-group
+                    %label.control-label{for: "dep"} Departamento
+                    .controls
+                      %select#dep.span2{name: "dep", style: "margin-right:20px;"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                      %label{style: "display: inline; margin-right:20px;"} Provincia
+                      %select#prov.span2{name: "prov", style: "margin-right:20px;"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                      %label{style: "display: inline; margin-right:20px;"} Distrito
+                      %select#dist.span2{name: "dist"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label{for: "direccion"} Dirección
+                    .controls
+                      %input#direccion.span6{name: "direccion", type: "text"}/
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label{for: "referencia"} Referencia
+                    .controls
+                      %input#referencia.span6{name: "referencia", type: "text"}/
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label{for: "map"} Mapa
+                    .controls
+                      Aquí va el Mapa
+                    / /controls
+                  / /control-group
+            / /FIN DIRECTORIO
+            #redessociales.tab-pane
+              .form-horizontal
+                %fieldset
+                  .control-group
+                    %label.control-label{for: "email"} Email
+                    .controls
+                      %input#email.span6{name: "email", type: "text"}/
+                    / /controls
+                  / /control-group
+                .span4
+                  .form-horizontal
+                    %fieldset
+                      .control-group
+                        %label.control-label{for: "usuariof"} Usuario Facebook
+                        .controls
+                          %input#usuariof.span2{name: "usuariof", type: "text"}/
+                        / /controls
+                      / /control-group
+                      .control-group
+                        %label.control-label{for: "usuariot"} Usuario Twitter
+                        .controls
+                          %input#usuariot.span2{name: "usuariot", type: "text"}/
+                        / /controls
+                      / /control-group
+                / /span4
+                .span4
+                  .form-horizontal
+                    %fieldset
+                      .control-group
+                        %label.control-label{for: "enlacef"} Enlace Facebook
+                        .controls
+                          %input#enlacef.span2{name: "enlacef", type: "text"}/
+                        / /controls
+                      / /control-group
+                      .control-group
+                        %label.control-label{for: "enlacet"} Enlace Twitter
+                        .controls
+                          %input#enlacet.span2{name: "enlacet", type: "text"}/
+                        / /controls
+                      / /control-group
+                / /span4
+            / /FIN REDES SOCIALES
+            #finales.tab-pane
+              .form-horizontal
+                %fieldset
+                  .control-group
+                    %label.control-label{for: "red"} Red
+                    .controls
+                      %select#red.span2{name: "red", style: "margin-right:20px;"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                      %label{style: "display: inline; margin-right:20px;"} Lugar
+                      %select#red.span2{name: "red", style: "margin-right:20px;"}
+                        %option{value: "1"} Casa
+                        %option{value: "2"} Móvil
+                        %option{value: "3"} Trabajo
+                      %label{style: "display: inline; margin-right:20px;"} Fec. Conversión
+                      %input#fec_conv.span2.datepicker{name: "fec_conv", style: "margin-right:20px;", type: "text"}/
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label Día Visita
+                    .controls
+                      %input#dia_visita.span2{name: "dia_visita", style: "margin-right:20px;", type: "text"}/
+                      %label{style: "display: inline; margin-right:20px;"} Hora Visita
+                      %input#hora_visita.span2{name: "hora_visita", style: "margin-right:20px;", type: "text"}/
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label{for: "invitadopor"} Invitado por
+                    .controls
+                      %input#invitadopor.span4{name: "invitadopor", type: "text"}/
+                    / /controls
+                  / /control-group
+                  .control-group
+                    %label.control-label{for: "motivo_oracion"} Mot. Oración
+                    .controls
+                      %textarea#motivo_oracion.span4{name: "motivo_oracion"}
+                    / /controls
+                  / /control-group
+            / /FIN DATOS DE RED
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
