@@ -1,0 +1,20 @@
+.span4 {
+	width: 350px;
+}
+.span6 {
+	width: 550px;
+}
+.subnavbar .container > ul > li > a{
+	height: auto;
+	padding: 5px 15px;
+}
+.subnavbar .container > ul > li{
+	height: auto;
+}
+.subnavbar-inner{
+	height: 30px;
+}
+.modal{
+	left: 35%;
+	width: 950px;
+}
