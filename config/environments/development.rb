@@ -28,4 +28,5 @@ RubyRails4Sample::Application.configure do
   config.assets.debug = true
 
   
+  
 end

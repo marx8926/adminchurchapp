@@ -1,0 +1,47 @@
+.row-fluid
+	.span12
+		.row-fluid
+			.span4 
+				.control-group
+					= label_tag :departamento,'Departamento', :class=>'control-label'
+					.controls
+						= select_tag :departamento
+			.span4
+				.control-group
+					= label_tag :provincia,'Provincia', :class=>'control-label'
+					.controls
+						= select_tag :provincia
+			.span4
+				.control-group
+					= label_tag :distrito,'Distrito', :class=>'control-label'
+					.controls
+						= select_tag :distrito
+
+
+
+	= hidden_field_tag :ubi, dist
+	-if dist.size >0
+		- @distr = Ubigeo.where(id: dist).take
+		- @prov = Ubigeo.where(id: @distr.nUbigeoDep).take
+		- @dep  = Ubigeo.where(id: @prov.nUbigeoDep).take	
+
+		= hidden_field_tag :dist, @distr.id
+		= hidden_field_tag :prov, @prov.id
+		= hidden_field_tag :dep, @dep.id
+
+
+:javascript
+	$(document).ready(function(){
+		ubigeos = getAjaxObject("https://s3.amazonaws.com/adminchurch/ubi.json");		
+		
+
+		distrito = $('#ubi').val();
+
+		if(distrito.length>0)
+		{
+			cargarUbigeo(ubigeos, 'distrito','provincia','departamento',$('#dist').val(), $('#prov').val(), $('#dep').val() );
+		}
+		else
+			cargarUbigeo(ubigeos, 'distrito','provincia','departamento');
+
+	});
