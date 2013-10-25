@@ -10,5 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
-//= require_tree .
+//= require jquery-1.7.2.min
+//= require excanvas.min
+//= require chart.min
+//= require bootstrap
+//= require datepicker/js/bootstrap-datepicker
+//= require ac
+//= require full-calendar/fullcalendar.min
+//= require base
