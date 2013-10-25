@@ -4,6 +4,9 @@ RubyRails4Sample::Application.routes.draw do
   get "home/index"
   root :to => "home#index"
   get 'ganar/' => 'ganar#index'
+  get 'ganar/informe_persona' => 'ganar#informe_persona'
+
+  get 'organizacion/plan_trabajo' => 'organizacion#plan_trabajo'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,255 @@
+.widget.widget-nopad
+  .widget-header
+    %h3 Informe
+    %a.btn{"data-toggle" => "modal", href: "#", style: "float: right; margin: 6px;"}
+      %i.icon-envelope-alt{style: "margin:0; "}
+      Correo
+    %a.btn{"data-toggle" => "modal", href: "#", style: "float: right; margin: 6px;"}
+      %i.icon-file-text-alt{style: "margin:0; "}
+      PDF
+    %a.btn{"data-toggle" => "modal", href: "#", style: "float: right; margin: 6px;"}
+      %i.icon-file-text-alt{style: "margin:0; "}
+      Excel
+    %a.btn{href: ganar_path, style: "float: right; margin: 6px;"}
+      %i.icon-arrow-left{style: "margin:0; "}
+      Volver
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        %h3{style: "margin-left:30px;"} Datos Personales
+        %br/
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Claudia María
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "estadocivil", style: "width:auto;"} Estado Civil
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Soltero
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "dni", style: "width:auto;"} D.N.I.
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} 12345678
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "apellido", style: "width:auto;"} Apellido
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Valdivieso Castillo
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "sexo", style: "width:auto;"} Sexo
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Femenino
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "ocupacion", style: "width:auto;"} Ocupación
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Developer
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "edad", style: "width:auto;"} Edad
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} 23
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "fec_nac", style: "width:auto;"} Fec. Nac.
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} 26-04-1990
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "profesion", style: "width:auto;"} Profesión
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Ing. Informática
+                / /controls
+              / /control-group
+        / /span4
+        %hr{style: "display:block;"}/
+        %br/
+        %h3{style: "margin-left:30px;"} Datos Directorio
+        %br/
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Teléfono
+              %th Tipo
+          %tbody
+            %tr
+              %td 147258639
+              %td Móvil
+        %hr/
+        %br/
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Depart.
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} La Libertad
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Dirección
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Mi Casa 123
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Provincia
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Trujillo
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Distrito
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Victor Larco
+                / /controls
+              / /control-group
+        / /span4
+        %br/
+        %div{style: "clear:both;"}
+        .span6{style: "margin:0 auto;"}
+          %h1 MAPA
+        %div{style: "clear:both;"}
+        %br/
+        %h3{style: "margin-left:30px;"} Datos Redes Sociales
+        %br/
+        .span6
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Email
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} clindy.26@gmail.com
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Facebook
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Claudia Valdivieso Castillo
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Twitter
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} lavaldi_
+                / /controls
+              / /control-group
+        / /span6
+        .span6
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"}
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} .
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Facebook
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} https://www.facebook.com/ClaudiaValdiviesoCastillo
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Twitter
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} https://twitter.com/lavaldi_
+                / /controls
+              / /control-group
+        / /span6
+        %br/
+        %h3{style: "margin-left:30px;"} Datos Finales
+        %br/
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Red
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} 3
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Lugar
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Mi casa
+                / /controls
+              / /control-group
+        / /span4
+        .span4
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Fec. Conversión
+                .controls{style: "margin-left: 120px;"}
+                  %label{style: "padding-top: 5px;"} 09/2013
+                / /controls
+              / /control-group
+        / /span4
+        .span6
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Día de Visita
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} ----
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Invitado por
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} Nadie :(
+                / /controls
+              / /control-group
+        / /span6
+        .span6
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Hora
+                .controls{style: "margin-left: 90px;"}
+                  %label{style: "padding-top: 5px;"} -----
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "nombre", style: "width:auto;"} Motivo de Oración
+                .controls{style: "margin-left: 130px;"}
+                  %label{style: "padding-top: 5px;"} -----
+                / /controls
+              / /control-group
+        / /span6
