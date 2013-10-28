@@ -31,15 +31,14 @@ ActiveRecord::Schema.define(version: 20131025215753) do
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
-  create_table "ubigeos", force: true do |t|
-    t.integer  "nUbigeo_id"
-    t.string   "cUbigeoDesc", limit: 50
-    t.integer  "nUbigeoDpt"
-    t.integer  "nUbigeoProv"
-    t.integer  "nUbigeoDist"
-    t.integer  "nUbigeoDep"
-    t.float    "nUbigeoLat"
-    t.float    "nUbigeoLng"
+  create_table "ubigeos", primary_key: "int_ubigeo_id", force: true do |t|
+    t.string   "string_ubigeo_descripcion", limit: 50
+    t.integer  "int_ubigeo_departamento"
+    t.integer  "int_ubigeo_provincia"
+    t.integer  "int_ubigeo_distrito"
+    t.integer  "int_ubigeo_dependencia"
+    t.float    "float_ubigeo_latitud"
+    t.float    "float_ubigeo_longitud"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
