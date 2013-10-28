@@ -8,6 +8,7 @@ RubyRails4Sample::Application.routes.draw do
   get 'ganar/informe_persona' => 'ganar#informe_persona'
 
   get 'organizacion/plan_trabajo' => 'organizacion#plan_trabajo'
+  get 'comunicar/index' => 'comunicar#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
