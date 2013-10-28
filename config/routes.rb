@@ -4,6 +4,7 @@ RubyRails4Sample::Application.routes.draw do
   get "home/index"
   root :to => "home#index"
   get 'ganar/' => 'ganar#index'
+  post 'ganar/guardar' => 'ganar#guardar'
   get 'ganar/informe_persona' => 'ganar#informe_persona'
 
   get 'organizacion/plan_trabajo' => 'organizacion#plan_trabajo'

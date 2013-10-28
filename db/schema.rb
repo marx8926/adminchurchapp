@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024215024) do
+ActiveRecord::Schema.define(version: 20131025215753) do
 
   create_table "models", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,5 +30,18 @@ ActiveRecord::Schema.define(version: 20131024215024) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
+  create_table "ubigeos", force: true do |t|
+    t.integer  "nUbigeo_id"
+    t.string   "cUbigeoDesc", limit: 50
+    t.integer  "nUbigeoDpt"
+    t.integer  "nUbigeoProv"
+    t.integer  "nUbigeoDist"
+    t.integer  "nUbigeoDep"
+    t.float    "nUbigeoLat"
+    t.float    "nUbigeoLng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

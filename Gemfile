@@ -59,7 +59,7 @@ gem 'haml-rails'
 gem 'RedCloth'
 gem 'devise'
 gem 'devise-encryptable'
-gem 'aws-sdk'
+gem 'aws-s3'
 gem 'paperclip'
 
 
