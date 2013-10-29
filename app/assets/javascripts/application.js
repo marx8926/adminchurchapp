@@ -18,3 +18,5 @@
 //= require ac
 //= require full-calendar/fullcalendar.min
 //= require base
+//= require mapa/jquery-gmaps-lation-picker
+//= require util/functiongen.js

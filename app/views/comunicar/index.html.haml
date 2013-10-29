@@ -1,0 +1,98 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Enviados
+    %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
+      %i.icon-plus{style: "margin:0; "}
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+          %fieldset
+            .control-group
+              %label.control-label{for: "filtro"} Filtro
+              .controls
+                %input#filtro.span2{style: "margin-right:20px;", type: "text"}/
+                %select#tipofiltro.span2{style: "margin-right:20px;"}
+                  %option{value: "1"} Nombre
+                  %option{value: "2"} Apellido
+                %button.btn.btn-primary{type: "submit"} Buscar
+              / /controls
+            / /control-group
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nombre
+              %th Fecha
+              %th Hora
+              %th Categoria
+              %th.td-actions
+          %tbody
+            %tr
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td.td-actions
+                %a.btn.btn-info{href: "Ganar-informe.html"}
+                  %i.icon-file-alt
+                  Informe
+  / Modal
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      %div
+        .span3
+          .form-horizontal
+            .control-group
+              %label.control-label{for: "categoria", style: "width:auto;"} Categoria
+              .controls{style: "margin-left: 90px;"}
+                %select#dist.span2{name:"categoria"}
+
+        .span3
+          %label.checkbox
+          %input#persona{type: "checkbox"} Persona          
+          %input#telefono.span2{name: "telefono", style: "margin-right:20px;", type: "text"}
+
+        .span3
+          %label{for: "telefono", style: "width:auto;"}Telefono
+          = text_field_tag :telefono
+          %button.btn Mas
+
+      %div
+        .span3
+          %label.checkbox
+          %input#todos{type: "checkbox"}/
+          Todos
+
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nombre
+            %th Telefono
+            %th Red
+            %th.td-actions
+        %tbody
+          %tr
+            %td 147258639
+            %td Móvil
+            %td ---
+            %td.td-actions
+              %a.btn.btn-danger{href: "#"}
+                %i.icon-remove
+                Eliminar
+            
+      
+      .form-horizontal
+        .control-group
+          %label.control-label{for: "mensaje"} Mensaje
+          .controls
+            %textarea.span6{ rows: "4"}
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal

@@ -1,47 +1,10 @@
-.row-fluid
-	.span12
-		.row-fluid
-			.span4 
-				.control-group
-					= label_tag :departamento,'Departamento', :class=>'control-label'
-					.controls
-						= select_tag :departamento
-			.span4
-				.control-group
-					= label_tag :provincia,'Provincia', :class=>'control-label'
-					.controls
-						= select_tag :provincia
-			.span4
-				.control-group
-					= label_tag :distrito,'Distrito', :class=>'control-label'
-					.controls
-						= select_tag :distrito
+.control-group
+  %label.control-label{for: "dep"} Departamento
+  .controls
+    %select#dep.span2{name: "dep", style: "margin-right:20px"}
+    %label{style: "display: inline; margin-right:20px;"}Provincia
+    %select#prov.span2{name: "prov", style: "margin-right:20px;"}
+    %label{style: "display: inline; margin-right:20px;"}Distrito
+    %select#dist.span2{name:"dist"}
 
 
-
-	= hidden_field_tag :ubi, dist
-	-if dist.size >0
-		- @distr = Ubigeo.where(id: dist).take
-		- @prov = Ubigeo.where(id: @distr.nUbigeoDep).take
-		- @dep  = Ubigeo.where(id: @prov.nUbigeoDep).take	
-
-		= hidden_field_tag :dist, @distr.id
-		= hidden_field_tag :prov, @prov.id
-		= hidden_field_tag :dep, @dep.id
-
-
-:javascript
-	$(document).ready(function(){
-		ubigeos = getAjaxObject("https://s3.amazonaws.com/adminchurch/ubi.json");		
-		
-
-		distrito = $('#ubi').val();
-
-		if(distrito.length>0)
-		{
-			cargarUbigeo(ubigeos, 'distrito','provincia','departamento',$('#dist').val(), $('#prov').val(), $('#dep').val() );
-		}
-		else
-			cargarUbigeo(ubigeos, 'distrito','provincia','departamento');
-
-	});

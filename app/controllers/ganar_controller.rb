@@ -3,6 +3,10 @@ class GanarController < ApplicationController
 		@title = ''
 	end
 	def informe_persona
-		@title = 'Informe'
+		@title = "Informe"
+	end
+
+	def guardar
+		
 	end
 end

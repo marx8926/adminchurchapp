@@ -2,7 +2,7 @@
 %html{lang: "es"}
   %head
     %meta{charset: "utf-8"}/
-    %title=@title+' - Ganar - Admin Church'
+    %title=@title+' - Organización - Admin Church'
     %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", name: "viewport"}/
     %meta{content: "yes", name: "apple-mobile-web-app-capable"}/
     %link{href: "http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600", rel: "stylesheet"}/
@@ -11,10 +11,6 @@
     / Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if lt IE 9]
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-
-    / Placed at the end of the document so the pages load faster
-    = javascript_include_tag :application
-    :javascript
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -56,7 +52,7 @@
       .subnavbar-inner
         .container
           %ul.mainnav
-            %li.active
+            %li
               %a{href: "#"}
                 %span Ganar
             %li.dropdown
@@ -87,7 +83,7 @@
                 %span Más
                 / b class="caret"></b
               %ul.dropdown-menu
-                %li
+                %li.active
                   %a{href: "#"} Comunicar
                 %li
                   %a{href: "#"} Pedir
@@ -122,4 +118,8 @@
       / /footer-inner
     / /footer
     /
- 
+      Le javascript
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag :application
+    :javascript

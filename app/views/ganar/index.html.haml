@@ -8,7 +8,7 @@
     .widget.big-stats-container
       .widget-content
         %br/
-        %form.form-horizontal
+        = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
           %fieldset
             .control-group
               %label.control-label{for: "filtro"} Filtro
@@ -38,7 +38,7 @@
                 %a.btn.btn-success{href: "#"}
                   %i.icon-edit
                   Editar
-                %a.btn.btn-info{href: ganar_informe_persona_path}
+                %a.btn.btn-info{href: "Ganar-informe.html"}
                   %i.icon-file-alt
                   Informe
   / Modal
@@ -160,25 +160,9 @@
                         %a.btn.btn-danger{href: "#"}
                           %i.icon-remove
                           Eliminar
-                %fieldset
-                  .control-group
-                    %label.control-label{for: "dep"} Departamento
-                    .controls
-                      %select#dep.span2{name: "dep", style: "margin-right:20px;"}
-                        %option{value: "1"} Casa
-                        %option{value: "2"} Móvil
-                        %option{value: "3"} Trabajo
-                      %label{style: "display: inline; margin-right:20px;"} Provincia
-                      %select#prov.span2{name: "prov", style: "margin-right:20px;"}
-                        %option{value: "1"} Casa
-                        %option{value: "2"} Móvil
-                        %option{value: "3"} Trabajo
-                      %label{style: "display: inline; margin-right:20px;"} Distrito
-                      %select#dist.span2{name: "dist"}
-                        %option{value: "1"} Casa
-                        %option{value: "2"} Móvil
-                        %option{value: "3"} Trabajo
-                    / /controls
+                = field_set_tag do
+                  = render 'layouts/ubigeo', dist: ''
+                  / /controls
                   / /control-group
                   .control-group
                     %label.control-label{for: "direccion"} Dirección
@@ -195,7 +179,8 @@
                   .control-group
                     %label.control-label{for: "map"} Mapa
                     .controls
-                      Aquí va el Mapa
+                      = render 'layouts/mapa', lat: '-8.112489', lng:'-79.0288469'
+                    
                     / /controls
                   / /control-group
             / /FIN DIRECTORIO
@@ -285,3 +270,12 @@
       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
       %button.btn.btn-primary{type: "submit"} Guardar
   / Modal
+
+:javascript
+  $(document).ready(function(){
+    ubigeos = getAjaxObject("https://s3.amazonaws.com/macn/ubi.json");   
+    
+
+    cargarUbigeo(ubigeos, 'dist','prov','dep');
+
+  });
