@@ -1,0 +1,149 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Buscar Reserva
+    %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
+      %i.icon-plus{style: "margin:0; "}
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        
+        %fieldset.form-horizontal
+          #calendar
+
+        
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+  / Modal
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      .control-group
+        %label.control-label{for: "empresa"} Nombre Empresa/Area
+        .controls
+          = text_field_tag :empresa,'', :class=>'span4'
+
+      .control-group
+        %label.control-label{for: "responsable"} Responsable acargo
+        .controls
+          = text_field_tag :responable,'', :class=>'span4'
+
+      %fieldset
+        .control-group
+          %label.control-label{for: "filtro"} Fecha
+          .controls
+            %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
+            %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+
+      .control-group
+        %label.control-label{for: "ambiente"} Ambiente
+        .controls
+          = select_tag :ambiente
+
+      %fieldset
+        %legend Lista de Materiales
+        .control-group
+          %label.control-label{for: "material"} Seleccionar Material
+          .controls
+            = select_tag :material
+
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Materiales             
+            %th.td-actions
+        %tbody
+          %tr
+            %td Fresh Web Development Resources             
+            %td.td-actions
+              %a.btn.btn-info{href: "Ganar-informe.html"}
+                %i.icon-edit
+                  Eliminar
+
+
+      
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+:javascript
+   $(document).ready(function() {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+        var calendar = $('#calendar').fullCalendar({
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          selectable: true,
+          selectHelper: true,
+          select: function(start, end, allDay) {
+            var title = prompt('Event Title:');
+            if (title) {
+              calendar.fullCalendar('renderEvent',
+                {
+                  title: title,
+                  start: start,
+                  end: end,
+                  allDay: allDay
+                },
+                true // make the event "stick"
+              );
+            }
+            calendar.fullCalendar('unselect');
+          },
+          editable: true,
+          events: [
+            {
+              title: 'All Day Event',
+              start: new Date(y, m, 1)
+            },
+            {
+              title: 'Long Event',
+              start: new Date(y, m, d+5),
+              end: new Date(y, m, d+7)
+            },
+            {
+              id: 999,
+              title: 'Repeating Event',
+              start: new Date(y, m, d-3, 16, 0),
+              allDay: false
+            },
+            {
+              id: 999,
+              title: 'Repeating Event',
+              start: new Date(y, m, d+4, 16, 0),
+              allDay: false
+            },
+            {
+              title: 'Meeting',
+              start: new Date(y, m, d, 10, 30),
+              allDay: false
+            },
+            {
+              title: 'Lunch',
+              start: new Date(y, m, d, 12, 0),
+              end: new Date(y, m, d, 14, 0),
+              allDay: false
+            },
+            {
+              title: 'Birthday Party',
+              start: new Date(y, m, d+1, 19, 0),
+              end: new Date(y, m, d+1, 22, 30),
+              allDay: false
+            },
+            {
+              title: 'EGrappler.com',
+              start: new Date(y, m, 28),
+              end: new Date(y, m, 29),
+              url: 'http://EGrappler.com/'
+            }
+          ]
+        });
+      });

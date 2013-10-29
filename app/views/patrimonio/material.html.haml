@@ -1,0 +1,213 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Buscar Reserva
+    %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
+      %i.icon-plus{style: "margin:0; "}
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        
+        %fieldset.form-horizontal
+          .control-group
+            %label.control-label{for: "filtro"} Fecha
+            .controls
+              %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
+              %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+              %button.btn.btn-primary{type: "submit"} Buscar
+            / /controls
+          / /control-group
+        %div
+          %button.btn.btn-info Email
+          %button.btn.btn-success PDF
+          %button.btn.btn-warning Excel
+
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Responsable              
+              %th Cant. Materiales
+              %th Fecha Reserva
+              %th Fecha Retorno
+              %th.td-actions
+          %tbody
+            %tr
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td Fresh Web Development Resources
+              %td http://www.egrappler.com/
+              %td.td-actions
+                %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                  %i.icon-edit
+                  Editar
+                %a.btn.btn-primary{"data-toggle"=>"modal", href: "#ModalVisualizar"}
+                  %i.icon-fullscreen
+                  Ver
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+  / Modal
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      .control-group
+        %label.control-label{for: "responsable"} Responsable
+        .controls
+          = text_field_tag :responsable,''
+
+      .control-group
+        %label.control-label{for: "fechareserva"} Fecha Reserva
+        .controls
+          %input#fechareserva.datepicker{type: "text"}
+
+      .control-group
+        %label.control-label{for: "fecharetorno"} Fecha Retorno
+        .controls
+          %input#fecharetorno.datepicker{type: "text"}
+
+      %fieldset
+        %legend Lista de Materiales
+        .control-group
+          %label.control-label{for: "material"} Seleccionar Material
+          .controls
+            = select_tag :material
+
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Materiales             
+            %th.td-actions
+        %tbody
+          %tr
+            %td Fresh Web Development Resources             
+            %td.td-actions
+              %a.btn.btn-info{href: "Ganar-informe.html"}
+                %i.icon-edit
+                  Eliminar
+
+
+      
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+  / Modal
+  #ModalEditar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel",  style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      .control-group
+        %label.control-label{for: "responsable"} Responsable
+        .controls
+          = text_field_tag :responsable,''
+
+      .control-group
+        %label.control-label{for: "fechareserva"} Fecha Reserva
+        .controls
+          %input#fechareserva.datepicker{type: "text"}
+
+      .control-group
+        %label.control-label{for: "fecharetorno"} Fecha Retorno
+        .controls
+          %input#fecharetorno.datepicker{type: "text"}
+
+      %fieldset
+        %legend Lista de Materiales
+        .control-group
+          %label.control-label{for: "material"} Seleccionar Material
+          .controls
+            = select_tag :material
+
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Materiales             
+            %th.td-actions
+        %tbody
+          %tr
+            %td Fresh Web Development Resources             
+            %td.td-actions
+              %a.btn.btn-info{href: "Ganar-informe.html"}
+                %i.icon-edit
+                  Eliminar
+      .control-group
+        %label.control-label{for: "estado"} Estado
+        .controls
+          = select_tag :estado
+
+
+      
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+  / Modal
+  #ModalVisualizar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog",  style: "width:auto; margin-right:1.3%; margin-left:1.5%;",tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Información
+    .modal-body
+      .control-group
+        %label.control-label{for: "empresa"} Nombre Empresa/Area
+        .controls
+          %label
+
+      .control-group
+        %label.control-label{for: "responsable"} Responsable acargo
+        .controls
+          %label
+
+      %fieldset
+        .control-group
+          %label.control-label{for: "filtro"} Fecha Reserva
+          .controls
+            %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
+
+      .control-group
+        %label.control-label{for: "ambiente"} Ambiente
+        .controls
+          %label 
+
+      %fieldset
+        %legend Lista de Materiales
+        .control-group
+          %label.control-label{for: "material"} Seleccionar Material
+          .controls
+            
+
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Materiales             
+            %th.td-actions
+        %tbody
+          %tr
+            %td Fresh Web Development Resources             
+            %td.td-actions
+              %a.btn.btn-info{href: "Ganar-informe.html"}
+                %i.icon-edit
+                  Eliminar
+      .control-group
+        %label.control-label{for: "estado"} Estado
+       
+
+
+      
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Email
+      %button.btn.btn-primary{type: "submit"} PDF
+  / Modal
+
+
+
+
+

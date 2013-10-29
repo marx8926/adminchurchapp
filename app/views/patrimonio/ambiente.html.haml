@@ -36,14 +36,14 @@
                   %a.btn.btn-primary{href: "#"}
                     %i.icon-edit
                     Información
-
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
   / Modal
   #ModalEditar.modal.hide.fade{"aria-hidden" => "true", style: "width:auto; margin-left:4%", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h3#myModalLabel Registrar
     .modal-body
-      = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+      %div
         %fieldset
           .form-horizontal
             .control-group

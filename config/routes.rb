@@ -12,6 +12,10 @@ RubyRails4Sample::Application.routes.draw do
 
   get 'patrimonio/equipos' => 'patrimonio#equipo'
   get 'patrimonio/ambiente' => 'patrimonio#ambiente'
+  get 'patrimonio/asignacionambiente' => 'patrimonio#asignacionambiente'
+  get 'patrimonio/material' => 'patrimonio#material'
+  get 'secretaria/evento' => 'secretaria#evento'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
