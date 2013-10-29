@@ -59,7 +59,7 @@ development:
   pool: 5
   database: ac_dev
   username: root
-  password: '260489'
+  password: ''
   #socket: /var/run/mysqld/mysqld.sock
   host: localhost
 #  port: 5432
@@ -88,7 +88,7 @@ test:
   pool: 5
   database: ac_test
   username: root
-  password: '260489'
+  password: ''
   #socket: /var/run/mysqld/mysqld.sock
   host: localhost
 #  port: 5432
@@ -99,6 +99,6 @@ production:
   pool: 5
   database: ac_prod
   username: root
-  password: '260489'
+  password: ''
   #socket: /var/run/mysqld/mysqld.sock
   host: localhost
