@@ -58,7 +58,7 @@
                 %td Fresh Web Development Resources
                 %td http://www.egrappler.com/
                 %td.td-actions
-                  %a.btn.btn-success{href: "#ModalRegistrarPlan"}
+                  %a.btn.btn-success{"data-toggle" => "modal", href: "#ModalEditarPlan"}
                     %i.icon-edit
                     Editar
               %tr
@@ -87,7 +87,7 @@
                 %li Intimidad con Dios como iglesia
                 %li Procesos de la Iglesia
 
-  / Modal
+  / ModalRegistrarPlan
   #ModalRegistrarPlan.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "ModalRegistrarPlanLabel", role: "dialog", tabindex: "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
@@ -95,6 +95,13 @@
     .modal-body
       %br/
       %form#registrarPlan
+        .span9
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "anioplan"} Establecer año Plan de Trabajo
+                .controls 
+                  %input#anioplan.span2{name: "anioplan", type: "text"}
         .span5{style:"width:430px;"}
           .form-horizontal
             %fieldset
@@ -169,4 +176,73 @@
     .modal-footer
       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
       %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+  / ModalEditarPlan
+  #ModalEditarPlan.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "ModalEditarPlanLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#ModalEditarPlanLabel Editar
+    .modal-body
+      %br
+      %form#registrarPlan
+        .span9
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "anioplan"} Establecer año Plan de Trabajo
+                .controls 
+                  %input#anioplan.span2.disabled{disabled: "",name: "anioplan", type: "text"}
+        .span5{style:"width:430px;"}
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "tipo_servicio"}
+                  Tipo
+                  %br/
+                  Servicio
+                .controls
+                  %select#tipo_servicio.span2{name: "tipo_servicio"}
+                    %option{value: "1"} Soltero
+                    %option{value: "2"} Casado
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "actividad"} Actividad
+                .controls
+                  %input#actividad.span2{name: "actividad", type: "text"}/
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "mes"} Mes
+                .controls
+                  %select#mes.span2{name: "mes"}
+                    %option{value: "1"} Soltero
+                    %option{value: "2"} Casado
+                / /controls
+              / /control-group
+        / /span5
+        .span5{style:"width:430px;"}
+          .form-horizontal
+            %fieldset
+              .control-group
+                %label.control-label{for: "red", style: "width:auto;"} Red
+                .controls
+                  %select#red.span2{name: "red"}
+                    %option{value: "1"} Soltero
+                    %option{value: "2"} Casado
+                / /controls
+              / /control-group
+              .control-group
+                %label.control-label{for: "sexo", style: "width:auto;"} 
+                  Rango Fecha
+                .controls
+                  %input#fechareg1.datepicker{style: "margin-right:20px;width:80px;", type: "text"}
+                  de
+                  %input#fechareg2.datepicker{style: "margin:0 20px;width:80px;", type: "text"}
+                / /controls
+              / /control-group              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Actualizar
   / Modal
