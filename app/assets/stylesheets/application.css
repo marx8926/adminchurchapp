@@ -11,7 +11,7 @@
  *= require bootstrap.min
  *= require bootstrap-responsive.min
  *= require font-awesome
- *= require style
  *= require datepicker/css/datepicker
+ *= require style
  *= require ac
  */
