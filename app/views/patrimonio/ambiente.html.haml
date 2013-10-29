@@ -1,0 +1,76 @@
+.span6
+  .widget.widget-nopad
+    .widget-header
+      %i.icon-search
+      %h3 Buscar
+    .widget-content
+      .widget.big-stats-container
+        .widget-content
+          %br/
+          = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+            %fieldset
+              %div.offset1
+                .control-group
+                  %label.control-label{for: "filtro"} 
+                  .controls
+                    %input#filtro.span2{style: "margin-right:20px;", type: "text"}/
+               
+                    %button.btn.btn-primary{type: "submit"} Buscar
+                  / /controls
+                / /control-group
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Tipos
+                %th Nombres
+                %th Cap. Max <br> Personas
+                %th.td-actions
+            %tbody
+              %tr
+                %td Fresh 
+                %td http
+                %td Fresh                
+                %td.td-actions
+                  %a.btn.btn-success{href: "#"}
+                    %i.icon-edit
+                    Estado
+                  %a.btn.btn-primary{href: "#"}
+                    %i.icon-edit
+                    Información
+
+.span4
+  .widget.widget-nopad
+    .widget-header
+      %i.icon-plus
+      %h3 Registrar
+    .widget-content
+      .widget.big-stats-container
+        .widget-content
+          %br/
+          = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+            %fieldset
+              .form-horizontal
+                .control-group
+                  %label.control-label{for: "tipo", style: "width:auto;"} Tipo
+                  .controls{style: "margin-left: 90px;"}
+                    = select_tag :tipo
+                .control-group
+                  %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+                  .controls{style: "margin-left: 90px;"}
+                    = text_field_tag :nombre
+                .control-group
+                  %label.control-label{for: "capmax", style: "width:auto;"} Cap. Max <br> Personas
+                  .controls{style: "margin-left: 90px;"}
+                    = number_field_tag :capmax
+                .control-group
+                  %label.control-label{for: "lugar", style: "width:auto;"} Lugar
+                  .controls{style: "margin-left: 90px;"}
+                    = text_field_tag :lugar
+                .control-group
+                  %label.control-label{for: "direccion", style: "width:auto;"} Dirección
+                  .controls{style: "margin-left: 90px;"}
+                    = text_field_tag :direccion    
+                %div.offset1
+                  %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+                  %button.btn.btn-primary{type: "submit"} Guardar         
+ 
