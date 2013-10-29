@@ -13,9 +13,8 @@
                 .control-group
                   %label.control-label{for: "filtro"} 
                   .controls
-                    %input#filtro.span2{style: "margin-right:20px;", type: "text"}/
+                    %input#filtro{style: "margin-right:20px;", type: "text"}/
                
-                    %button.btn.btn-primary{type: "submit"} Buscar
                   / /controls
                 / /control-group
           %table.table.table-striped.table-bordered
@@ -31,12 +30,52 @@
                 %td http
                 %td Fresh                
                 %td.td-actions
-                  %a.btn.btn-success{href: "#"}
+                  %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
                     %i.icon-edit
-                    Estado
+                    Editar
                   %a.btn.btn-primary{href: "#"}
                     %i.icon-edit
                     Información
+
+  / Modal
+  #ModalEditar.modal.hide.fade{"aria-hidden" => "true", style: "width:auto; margin-left:4%", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+        %fieldset
+          .form-horizontal
+            .control-group
+              %label.control-label{for: "tipo", style: "width:auto;"} Tipo
+              .controls{style: "margin-left: 90px;"}
+                = select_tag :tipo
+            .control-group
+              %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :nombre
+            .control-group
+              %label.control-label{for: "capmax", style: "width:auto;"} Cap. Max <br> Personas
+              .controls{style: "margin-left: 90px;"}
+                = number_field_tag :capmax
+
+            .control-group
+              %label.control-label{for: "estado", style: "width:auto;"} Estado
+              .controls{style: "margin-left: 90px;"}
+                = select_tag :estado
+
+            .control-group
+              %label.control-label{for: "lugar", style: "width:auto;"} Lugar
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :lugar
+            .control-group
+              %label.control-label{for: "direccion", style: "width:auto;"} Dirección
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :direccion    
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
 
 .span4
   .widget.widget-nopad
