@@ -20,3 +20,4 @@
 //= require base
 //= require mapa/jquery-gmaps-lation-picker
 //= require util/functiongen.js
+//= require bootstrap-timepicker.min

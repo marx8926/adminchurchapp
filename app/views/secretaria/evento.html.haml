@@ -1,42 +1,251 @@
 .widget.widget-nopad
   .widget-header
-    %i.icon-search
-    %h3 Buscar Reserva
+    %i.icon-tasks
+    %h3 Eventos
     %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
       %i.icon-plus{style: "margin:0; "}
+    %a.btn{"data-toggle"=>"modal", href: "#ModalExportar", style: "float: right; margin: 6px;"}
+      %i.icon-download{style: "margin:0;"}
   .widget-content
     .widget.big-stats-container
       .widget-content
         %br/
         
-        %fieldset.form-horizontal
-          #calendar
+        .tabbable
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", href: "#grafico"} Gráfico
+            %li
+              %a{"data-toggle" => "tab", href: "#lista"} Lista
+     
+          %br/
+          .tab-content
+            #grafico.tab-pane.active
+              .form-horizontal
+                #calendar
+                    
+              / /FIN DATOS PERSONALES
+            #lista.tab-pane
+              %div.form-horizontal
+
+                .control-group
+                  %label.checkbox{style: "width:auto;"}
+                  .controls
+                    %input#tipoevento{type: "checkbox"} Tipo Evento          
+                    = select_tag :tipoevento
+
+                .control-group
+                  %label.control-label{for: "filtro"} Fecha
+                  .controls
+                    %input#inicio.span2.datepicker{ type: "text"}/
+                    %input#fin.span2.datepicker{ type: "text"}
+                    %button.btn{} Buscar
+              %div
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Tipo Evento
+                      %th Nombre Evento
+                      %th Organizador
+                      %th Fecha Programación
+                      %th.td-actions
+                  %tbody
+                  %tr
+                    %td Fresh 
+                    %td Fresh 
+                    %td Free
+                    %td Free              
+                    %td.td-actions
+                      %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                        %i.icon-edit
+                        Editar
+                      %a.btn.btn-sucess{"data-toggle"=> "modal", href: "#ModalVisualizar"}
+                        %i.icon-globe
+                        Visualizar
+
 
         
 
-= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+= form_tag( ganar_guardar_path,{:method=>'post'}) do
   / Modal
-  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h3#myModalLabel Registrar
     .modal-body
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", href: "#datos"} Datos
+          %li
+            %a{"data-toggle" => "tab", href: "#contacto"} Lista Contacto
+          %li
+            %a{"data-toggle" => "tab", href: "#reserva"} Reserva Ambiente
+     
+        %br/
+        .tab-content
+          #datos.tab-pane.active
+            .form-horizontal
+              .control-group
+                %label.control-label{for: "organizador"} Organizador
+                .controls
+                  = text_field_tag :organizador, '', :class=>'span4'
+
+                
+              .control-group
+                %label.control-label{for:"tipoevento"} Tipo Evento
+                .controls
+                  = select_tag :tipoevento
+
+              .control-group
+                %label.control-label{for: "nombreevento"} Nombre Evento
+                .controls
+                  = text_field_tag :nombrevento,'', :class=>'span4'
+
+              .control-group
+                %label.control-label{for: "filtro"} Fecha
+                .controls
+                  %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
+                  %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+
+              .control-group
+                %label.control-label{for: "hora"} Hora
+                .controls
+                  %input#hora.span2{type: "text"}
+
+              .control-group
+                %label.control-label{for: "descripcion"} Descripción
+                .controls
+                  %textarea#descripcion.span4{rows: "4"}
+
+              .control-group
+                %label.control-label{for: "direccion"} Dirección
+                .controls
+                  = text_field_tag :direccion,'', :class=>'span4'
+                   
+              / /FIN DATOS PERSONALES
+          #contacto.tab-pane
+            %div
+              .span3.form-horizontal
+                .control-group
+                  %label.control-label{for: "categoria", style: "width:auto;"} Categoria
+                  .controls{style: "margin-left: 90px;"}
+                    %select#categoria.input-medium
+
+              .span3
+                %label.checkbox
+                %input#persona{type: "checkbox"} Persona          
+                %input#telefono{name: "telefono", style: "margin-right:20px;", type: "text"}
+
+              .span3.form-horizontal
+                .control-group
+                  %label.control-label{for: "email", style: "width:auto;"} Email
+                  .controls{style: "margin-left: 90px;"}
+                    = text_field_tag :email, '', class: 'input-medium'
+            %div
+
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Persona
+                    %th Email
+                    %th.td-actions
+                %tbody
+                %tr
+                  %td Fresh 
+                  %td Fresh                
+                  %td.td-actions
+                    %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                      %i.icon-edit
+                      Editar
+
+             
+
+          #reserva.tab-pane
+            .form-horizontal
+              .control-group
+                %label.control-label{for: "ambiente"} Ambiente
+                .controls
+                  = select_tag :ambiente
+
+              .control-group
+                %label.control-label{for: "material"} Materiales
+                .controls
+                  = select_tag :material
+                  .button.btn{}+
+
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Materiales
+                    %th.td-actions
+                %tbody
+                %tr
+                  %td Fresh 
+                  %td.td-actions
+                    %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                      %i.icon-edit
+                      Editar
+                        
+      
+
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+  / Modal
+  #ModalExportar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Exportar
+    .modal-body
+      
       .control-group
-        %label.control-label{for: "empresa"} Nombre Empresa/Area
+        %label.control-label{for: "filtro"} Fecha
         .controls
-          = text_field_tag :empresa,'', :class=>'span4'
+          %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
+          %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+
+    .modal-footer
+      %button.btn.btn-warning{"aria-hidden" => "true", "data-dismiss" => "modal"} PDF
+      %button.btn.btn-success{}Excel
+      %button.btn.btn-primary{type: "submit"} Excel
+  / Modal
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  #ModalEditar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      .control-group
+        %label.control-label{for: "nombreevento"} Nombre Evento
+        .controls
+          = text_field_tag :nombreevento, '', :class=>'span4'
+      .control-group
+        %label.control-label{for: "direccion"} Dirección
+        .controls
+          = text_field_tag :direccion, '', :class=>'span4'
 
       .control-group
-        %label.control-label{for: "responsable"} Responsable acargo
+        %label.control-label{for: "descripcion"} Descripción
         .controls
-          = text_field_tag :responable,'', :class=>'span4'
+          = text_field_tag :descripcion, '', :class=>'span4'
 
-      %fieldset
-        .control-group
-          %label.control-label{for: "filtro"} Fecha
-          .controls
-            %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
-            %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+      .control-group
+        %label.control-label{for: "fecha"} Fecha
+        .controls
+          %input#inicio.datepicker.span2{type: "text"}
+          %input#fin.datepicker.span2{type: "text"}
+
+      .control-group
+        %label.control-label{for: "hora"} Hora
+        .controls
+          %input#hora{type: "text"}
 
       .control-group
         %label.control-label{for: "ambiente"} Ambiente
@@ -44,33 +253,50 @@
           = select_tag :ambiente
 
       %fieldset
-        %legend Lista de Materiales
+        %legend Lista Materiales
+
         .control-group
-          %label.control-label{for: "material"} Seleccionar Material
+          %label.control-label{for: "material"} Materiales
           .controls
             = select_tag :material
 
-      %table.table.table-striped.table-bordered
-        %thead
-          %tr
-            %th Materiales             
-            %th.td-actions
-        %tbody
-          %tr
-            %td Fresh Web Development Resources             
-            %td.td-actions
-              %a.btn.btn-info{href: "Ganar-informe.html"}
-                %i.icon-edit
-                  Eliminar
+        .control-group
+          %label.control-label{for: "estado"} Estado
+          .controls
+            = select_tag :estado
+
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Persona
+              %th Email
+              %th.td-actions
+            %tbody
+              %tr
+                %td Fresh 
+                %td Fresh                
+                %td.td-actions
+                  %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                    %i.icon-edit
+                    Editar
+
 
 
       
+      
     .modal-footer
-      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
-      %button.btn.btn-primary{type: "submit"} Guardar
-  / Modal
+      %button.btn.btn-warning{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-success{}Guardar
+
+
+
 :javascript
    $(document).ready(function() {
+        $('#hora').timepicker({
+                template: false,
+                showInputs: false,
+                minuteStep: 5
+            });
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
