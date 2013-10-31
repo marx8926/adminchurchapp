@@ -48,35 +48,29 @@
         .span3
           .form-horizontal
             .control-group
-              %label.control-label{for: "categoria", style: "width:auto;"} Categoria
-              .controls{style: "margin-left: 90px;"}
+              %label.control-label{for: "categoria", style: "width:auto;"} Categoría
+              .controls{style: "margin-left: 70px;"}
                 %select#dist.span2{name:"categoria"}
+            .control-group
+              %label.control-label{style: "width:auto;"}
+                %input#todos{type: "checkbox"}/
+                Todos
 
         .span3
-          %label.checkbox
-          %input#persona{type: "checkbox"} Persona          
-          %input#telefono.span2{name: "telefono", style: "margin-right:20px;", type: "text"}
+          .form-horizontal
+            .control-group
+              %label.checkbox.inline
+                %input#persona{type: "checkbox", style:"margin-top: 7px;"} Persona
+                %input#telefono.span2{name: "telefono", type: "text", style:"margin-left: 10px;"}
 
         .span3
-          %label{for: "telefono", style: "width:auto;"}Telefono
-          = text_field_tag :telefono
-          %button.btn Mas
-
-      %div
-        .span3
-        .span3
-          %label.checkbox
-          %input#todo{type: "checkbox"} Todo
-
-      %div
-        
-
-
-      %div
-        .span3
-          %label.checkbox
-          %input#todos{type: "checkbox"}/
-          Todos
+          .form-horizontal
+            .control-group
+              %label.control-label{for: "telefono", style: "width:auto;"}Teléfono
+              .controls{style: "margin-left: 60px; "}
+                = text_field_tag :telefono,'', :class => 'span2'
+                %button.btn
+                  %i.icon-plus
 
       %table.table.table-striped.table-bordered
         %thead
@@ -96,11 +90,12 @@
                 Eliminar
             
       
-      .form-horizontal
-        .control-group
-          %label.control-label{for: "mensaje"} Mensaje
-          .controls
-            %textarea.span6{ rows: "4"}
+      .span7
+        .form-horizontal
+          .control-group
+            %label.control-label{for: "mensaje", style: "width:auto;"} Mensaje
+            .controls{style: "margin-left: 70px; "}
+              %textarea.span6{ rows: "4"}
               
     .modal-footer
       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
