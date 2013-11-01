@@ -11,7 +11,94 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025215753) do
+ActiveRecord::Schema.define(version: 20131101133948) do
+
+  create_table "actividads", primary_key: "int_actividad", force: true do |t|
+    t.integer  "int_actividad_tiposervicio"
+    t.string   "var_actividad_descripcion",  limit: 200
+    t.integer  "int_actividad_mes"
+    t.integer  "int_actividad_red"
+    t.datetime "dat_actividad_fecha"
+    t.string   "var_actividad_estado",       limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ambientes", primary_key: "int_ambiente_id", force: true do |t|
+    t.string   "var_ambiente_nombre",    limit: 200
+    t.integer  "int_ambiente_capmaximo"
+    t.string   "var_ambiente_lugar",     limit: 150
+    t.string   "var_ambiente_direccion", limit: 150
+    t.string   "var_ambiente_estado",    limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "asignacionrecursos", primary_key: "int_asignacionrecurso_id", force: true do |t|
+    t.string   "var_asignacionrecurso_area",        limit: 200
+    t.integer  "var_asignacionrecurso_responsable"
+    t.integer  "int_ambiente_id"
+    t.datetime "dat_asignacionrecurso_fecInicio"
+    t.datetime "dat_asignacionrecurso_fecFin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "var_asignacionrecurso_estado",      limit: 1
+    t.string   "var_asignacionrecurso_motivo",      limit: 250
+    t.integer  "int_asignacionrecurso_usuario"
+  end
+
+  create_table "detalle_sms", force: true do |t|
+    t.integer  "int_detallesms_id"
+    t.integer  "int_sms_id"
+    t.integer  "int_categoria_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "detallematerials", force: true do |t|
+    t.integer  "int_material_id"
+    t.integer  "int_asignacionrecurso_id"
+    t.string   "var_detallematerial_estado", limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "eventos", primary_key: "int_evento_id", force: true do |t|
+    t.integer  "int_evento_tipo"
+    t.string   "var_evento_nombre",      limit: 150
+    t.datetime "dat_evento_fecInicio"
+    t.datetime "dat_evento_fecFin"
+    t.time     "dat_evento_hora"
+    t.string   "var_evento_descripcion", limit: 500
+    t.string   "var_evento_direccion",   limit: 250
+    t.string   "var_evento_estado",      limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "listacontactos", primary_key: "int_listacontacto", force: true do |t|
+    t.string   "var_listacontacto_estado", limit: 1
+    t.string   "var_listacontacto_email",  limit: 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lugars", primary_key: "int_lugar_id", force: true do |t|
+    t.string   "var_lugar_descripcion", limit: 100
+    t.string   "var_lugar_estado",      limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "materials", primary_key: "int_material", force: true do |t|
+    t.integer  "int_material_tipo"
+    t.string   "var_material_marca",    limit: 50
+    t.string   "var_material_color",    limit: 50
+    t.float    "dec_material_cantidad"
+    t.string   "var_material_estado",   limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "models", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +117,37 @@ ActiveRecord::Schema.define(version: 20131025215753) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
+  create_table "personas", primary_key: "int_persona_id", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "var_persona_nombres",       limit: 45
+    t.string   "var_persona_apellidos",     limit: 45
+    t.integer  "int_persona_edad"
+    t.date     "dat_persona_fecNacimiento"
+    t.string   "var_persona_profesion",     limit: 45
+    t.string   "var_persona_ocupacion",     limit: 45
+    t.string   "var_persona_sexo",          limit: 1
+    t.string   "var_persona_dni",           limit: 10
+    t.string   "var_persona_estado",        limit: 1
+    t.integer  "int_persona_diaVisita"
+    t.time     "dat_persona_horaVisita"
+    t.string   "var_persona_email"
+  end
+
+  create_table "plantrabajos", primary_key: "int_plantrabajo", force: true do |t|
+    t.integer  "int_plantrabajo_anio"
+    t.string   "var_plantrabajo_estado", limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sms", primary_key: "int_sms_id", force: true do |t|
+    t.string   "var_sms_mensaje",          limit: 250
+    t.datetime "dat_detallesms_fechahora"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ubigeos", primary_key: "int_ubigeo_id", force: true do |t|
     t.string   "string_ubigeo_descripcion", limit: 50
