@@ -26,19 +26,20 @@
                     
               / /FIN DATOS PERSONALES
             #lista.tab-pane
-              %div.form-horizontal
-
+              .form-horizontal
                 .control-group
-                  %label.checkbox{style: "width:auto;"}
-                  .controls
-                    %input#tipoevento{type: "checkbox"} Tipo Evento          
+                  %label.control-label
+                    %label.checkbox.inline{style:"padding-top: 0;"}
+                      %input#tipoevento{type: "checkbox"} Tipo Evento
+                  .controls          
                     = select_tag :tipoevento
 
                 .control-group
                   %label.control-label{for: "filtro"} Fecha
                   .controls
-                    %input#inicio.span2.datepicker{ type: "text"}/
-                    %input#fin.span2.datepicker{ type: "text"}
+                    %input#inicio.span2.datepicker{ type: "text", style:"margin-right: 10px;"}
+                    al
+                    %input#fin.span2.datepicker{ type: "text", style:"margin:0 10px;"}
                     %button.btn{} Buscar
               %div
                 %table.table.table-striped.table-bordered
@@ -56,10 +57,10 @@
                     %td Free
                     %td Free              
                     %td.td-actions
-                      %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                      %a.btn.btn-success{"data-toggle" => "modal", href: "#ModalEditar"}
                         %i.icon-edit
                         Editar
-                      %a.btn.btn-sucess{"data-toggle"=> "modal", href: "#ModalVisualizar"}
+                      %a.btn.btn-info{"data-toggle"=> "modal", href: "#ModalVisualizar"}
                         %i.icon-globe
                         Visualizar
 
@@ -105,8 +106,9 @@
               .control-group
                 %label.control-label{for: "filtro"} Fecha
                 .controls
-                  %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
-                  %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+                  %input#inicio.span2.datepicker{style: "margin-right:10px;", type: "text"}
+                  al
+                  %input#fin.span2.datepicker{style: "margin:0 10px;", type: "text"}
 
               .control-group
                 %label.control-label{for: "hora"} Hora
@@ -133,9 +135,11 @@
                     %select#categoria.input-medium
 
               .span3
-                %label.checkbox
-                %input#persona{type: "checkbox"} Persona          
-                %input#telefono{name: "telefono", style: "margin-right:20px;", type: "text"}
+                .form-horizontal
+                  .control-group
+                    %label.checkbox.inline{style:"padding-top: 0;"}
+                      %input#persona{type: "checkbox", style:"margin-top: 7px;"} Persona          
+                      %input#telefono.span2{name: "telefono", style: "margin-left:20px;", type: "text"}
 
               .span3.form-horizontal
                 .control-group
@@ -155,7 +159,7 @@
                   %td Fresh 
                   %td Fresh                
                   %td.td-actions
-                    %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                    %a.btn.btn-success{"data-toggle" => "modal", href: "#ModalEditar"}
                       %i.icon-edit
                       Editar
 
@@ -172,7 +176,8 @@
                 %label.control-label{for: "material"} Materiales
                 .controls
                   = select_tag :material
-                  .button.btn{}+
+                  .button.btn{style:"margin-left:20px;"}
+                    %i.icon-plus
 
               %table.table.table-striped.table-bordered
                 %thead
@@ -183,7 +188,7 @@
                 %tr
                   %td Fresh 
                   %td.td-actions
-                    %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                    %a.btn.btn-success{"data-toggle" => "modal", href: "#ModalEditar"}
                       %i.icon-edit
                       Editar
                         
@@ -197,22 +202,26 @@
 
 = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
   / Modal
-  #ModalExportar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; margin-right:1.3%; margin-left:1.5%;", role: "dialog", tabindex: "-1"}
+  #ModalExportar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", style: "width:auto; left:50%;", role: "dialog", tabindex: "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h3#myModalLabel Exportar
     .modal-body
       
       .control-group
-        %label.control-label{for: "filtro"} Fecha
-        .controls
-          %input#inicio.span2.datepicker{style: "margin-right:20px;", type: "text"}/
-          %input#fin.span2.datepicker{style: "margin-right:20px;", type: "text"}
+        %label.control-label{for: "filtro",style:"width:auto;"} Fecha
+        .controls{style:"margin-left: 60px;"}
+          %input#inicio.span2.datepicker{style: "margin-right:10px;", type: "text"}
+          al
+          %input#fin.span2.datepicker{style: "margin:0 10px;", type: "text"}
 
     .modal-footer
-      %button.btn.btn-warning{"aria-hidden" => "true", "data-dismiss" => "modal"} PDF
-      %button.btn.btn-success{}Excel
-      %button.btn.btn-primary{type: "submit"} Excel
+      %button.btn.btn-danger{"aria-hidden" => "true", "data-dismiss" => "modal"} 
+        %i.icon-file-text-alt
+        PDF
+      %button.btn.btn-success{}
+        %i.icon-file-text-alt
+        Excel
   / Modal
 
 = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
@@ -239,8 +248,9 @@
       .control-group
         %label.control-label{for: "fecha"} Fecha
         .controls
-          %input#inicio.datepicker.span2{type: "text"}
-          %input#fin.datepicker.span2{type: "text"}
+          %input#inicio.datepicker.span2{type: "text", style:"margin-right:10px;"}
+          al
+          %input#fin.datepicker.span2{type: "text", style:"margin:0 10px;"}
 
       .control-group
         %label.control-label{for: "hora"} Hora
@@ -276,7 +286,7 @@
                 %td Fresh 
                 %td Fresh                
                 %td.td-actions
-                  %a.btn.btn-sucess{"data-toggle" => "modal", href: "#ModalEditar"}
+                  %a.btn.btn-success{"data-toggle" => "modal", href: "#ModalEditar"}
                     %i.icon-edit
                     Editar
 
@@ -285,8 +295,8 @@
       
       
     .modal-footer
-      %button.btn.btn-warning{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
-      %button.btn.btn-success{}Guardar
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{}Guardar
 
 
 
