@@ -4,6 +4,7 @@ class CreatePlantrabajos < ActiveRecord::Migration
       t.primary_key :int_plantrabajo
       t.integer :int_plantrabajo_anio
       t.string :var_plantrabajo_estado, limit: 1
+      t.references :persona, index: true
 
       t.timestamps
     end

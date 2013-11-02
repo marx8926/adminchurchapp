@@ -8,6 +8,7 @@ class CreateActividads < ActiveRecord::Migration
       t.integer :int_actividad_red
       t.datetime :dat_actividad_fecha
       t.string :var_actividad_estado, limit: 1
+      t.references :plantrabajo, index: true
       t.timestamps
     end
   end

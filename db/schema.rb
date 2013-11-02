@@ -20,9 +20,12 @@ ActiveRecord::Schema.define(version: 20131101133948) do
     t.integer  "int_actividad_red"
     t.datetime "dat_actividad_fecha"
     t.string   "var_actividad_estado",       limit: 1
+    t.integer  "plantrabajo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "actividads", ["plantrabajo_id"], name: "index_actividads_on_plantrabajo_id", using: :btree
 
   create_table "ambientes", primary_key: "int_ambiente_id", force: true do |t|
     t.string   "var_ambiente_nombre",    limit: 200
@@ -45,23 +48,32 @@ ActiveRecord::Schema.define(version: 20131101133948) do
     t.string   "var_asignacionrecurso_estado",      limit: 1
     t.string   "var_asignacionrecurso_motivo",      limit: 250
     t.integer  "int_asignacionrecurso_usuario"
+    t.integer  "ambiente_id"
   end
 
-  create_table "detalle_sms", force: true do |t|
-    t.integer  "int_detallesms_id"
-    t.integer  "int_sms_id"
+  add_index "asignacionrecursos", ["ambiente_id"], name: "index_asignacionrecursos_on_ambiente_id", using: :btree
+
+  create_table "detalle_sms", primary_key: "int_detallesms_id", force: true do |t|
+    t.integer  "sms_id"
+    t.integer  "persona_id"
     t.integer  "int_categoria_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "detalle_sms", ["persona_id"], name: "index_detalle_sms_on_persona_id", using: :btree
+  add_index "detalle_sms", ["sms_id"], name: "index_detalle_sms_on_sms_id", using: :btree
+
   create_table "detallematerials", force: true do |t|
-    t.integer  "int_material_id"
-    t.integer  "int_asignacionrecurso_id"
+    t.integer  "material_id"
+    t.integer  "asignacionrecurso_id"
     t.string   "var_detallematerial_estado", limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "detallematerials", ["asignacionrecurso_id"], name: "index_detallematerials_on_asignacionrecurso_id", using: :btree
+  add_index "detallematerials", ["material_id"], name: "index_detallematerials_on_material_id", using: :btree
 
   create_table "eventos", primary_key: "int_evento_id", force: true do |t|
     t.integer  "int_evento_tipo"
@@ -79,9 +91,12 @@ ActiveRecord::Schema.define(version: 20131101133948) do
   create_table "listacontactos", primary_key: "int_listacontacto", force: true do |t|
     t.string   "var_listacontacto_estado", limit: 1
     t.string   "var_listacontacto_email",  limit: 100
+    t.integer  "evento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "listacontactos", ["evento_id"], name: "index_listacontactos_on_evento_id", using: :btree
 
   create_table "lugars", primary_key: "int_lugar_id", force: true do |t|
     t.string   "var_lugar_descripcion", limit: 100
@@ -133,14 +148,20 @@ ActiveRecord::Schema.define(version: 20131101133948) do
     t.integer  "int_persona_diaVisita"
     t.time     "dat_persona_horaVisita"
     t.string   "var_persona_email"
+    t.integer  "persona_id"
   end
+
+  add_index "personas", ["persona_id"], name: "index_personas_on_persona_id", using: :btree
 
   create_table "plantrabajos", primary_key: "int_plantrabajo", force: true do |t|
     t.integer  "int_plantrabajo_anio"
     t.string   "var_plantrabajo_estado", limit: 1
+    t.integer  "persona_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "plantrabajos", ["persona_id"], name: "index_plantrabajos_on_persona_id", using: :btree
 
   create_table "sms", primary_key: "int_sms_id", force: true do |t|
     t.string   "var_sms_mensaje",          limit: 250

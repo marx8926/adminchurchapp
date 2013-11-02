@@ -11,6 +11,7 @@ class CreateAsignacionrecursos < ActiveRecord::Migration
       t.string :var_asignacionrecurso_estado, limit: 1
       t.string :var_asignacionrecurso_motivo, limit: 250
       t.integer :int_asignacionrecurso_usuario
+      t.references :ambiente, index: true
       t.timestamps
     end
   end
