@@ -1,0 +1,431 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Pagos
+    
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+          %div
+            .span3
+              .control-group
+                %label.control-label{for: "nomap"} Nombres y Apellidos
+                .controls
+                  = text_field_tag :nomap
+
+            .span6
+              .control-group
+                %label.control-label{for: "pago"} Pago
+                .controls
+                  %select#pago.span2{name: "pago"}
+                  %select#quincenal.span1{name: "quincenal"}
+
+
+          %div
+            .span3
+              .control-group
+                %label.control-label{for: "area"} Area
+                .controls
+                  = select_tag :area
+
+            .span3
+              .control-group
+                %label.control-label{for: "cargo"} Cargo
+                .controls
+                  %select#cargo.span2{name: "cargo"}
+
+            .span3
+              .control-group
+                %label.control-label{for: "estado"} Estado
+                .controls
+                  %select#estado.span2{name: "estado"}
+
+            
+          %div
+            .span3
+              .control-group
+                %label.control-label{for: "planilla"} Planilla
+                .controls
+                  %label.checkbox
+                    %input#yes{type: "checkbox"} Si
+                  %label.checkbox
+                    %input#no{type: "checkbox"} No
+              / /controls
+            / /control-group
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nombres y apellidos
+              %th Area
+              %th Cargo
+              %th Pago
+              %th Estado
+              %th.td-actions
+          %tbody
+            %tr
+              %td Fresh
+              %td http:
+              %td Fresh
+              %td http:
+              %th Fresh
+              %td.td-actions
+                %a.btn.btn-warning{"data-toggle" => "modal", href: "#ModalProgramar"}
+                  %i.icon-file-alt
+                  Programar
+                %a.btn.btn-info{"data-toggle" => "modal", href: "#ModalPagar"}
+                  %i.icon-file-alt
+                  Pagar
+                %a.btn.btn-primary{"data-toggle" => "modal", href: "#ModalGenerar"}
+                  %i.icon-file-alt
+                  Generar Boleta
+
+
+        %div
+          .span3
+          .span3
+          .span3
+            %label.control-label{for: "buscar"}
+              .controls
+                %button.btn.btn-primary{type: "submit"} Generar
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalProgramar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Programar
+    .modal-body
+      %fieldset
+        
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "fecha", style: "width:auto;"} Fecha
+              .controls{style: "margin-left: 90px;"}
+                %input#inicio.span2.datepicker{name: "inicio", type: "text"}
+                %input#fin.span2.datepicker{name: "fin", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "apellido", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :sueldo, '', :class=> 'span2'   
+
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "desc_hora", style: "width:auto;"} Desc. horas
+              .controls{style: "margin-left: 90px;"}
+                %input#desc_hora.span2{name: "desc_hora", type: "number"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "fpago", style: "width:auto;"} Forma de Pago
+              .controls{style: "margin-left: 90px;"}
+                %select#fpago.span2
+
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "phora", style: "width:auto;"} Precio Hora
+              .controls{style: "margin-left: 90px;"}
+                %input#phora.span2{name: "phora", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "codigo", style: "width:auto;"} Código
+              .controls{style: "margin-left: 90px;"}
+                %input#codigo.span2{name: "codigo", type: "text"}
+
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "bonif", style: "width:auto;"} Bonificación
+              .controls{style: "margin-left: 90px;"}
+                %input#bonif.span2{name: "bonif", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "retencion", style: "width:auto;"} Retención
+              .controls{style: "margin-left: 90px;"}
+                %input#retencion.span2{name: "retencion", type: "text"}
+
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalPagar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      %fieldset
+        
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "fecha", style: "width:auto;"} Fecha
+              .controls{style: "margin-left: 90px;"}
+                %input#inicio.span2.datepicker{name: "inicio", type: "text"}
+                %input#fin.span2.datepicker{name: "fin", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "apellido", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :sueldo, '', :class=> 'span2'   
+
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "desc_hora", style: "width:auto;"} Desc. horas
+              .controls{style: "margin-left: 90px;"}
+                %input#desc_hora.span2{name: "desc_hora", type: "number"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "fpago", style: "width:auto;"} Forma de Pago
+              .controls{style: "margin-left: 90px;"}
+                %select#fpago.span2
+
+        %div#codigodiv
+          .span3
+            .control-group
+              %label.control-label{for: "phora", style: "width:auto;"} Planilla
+              .controls{style: "margin-left: 90px;"}
+                %label
+
+          .span3
+            .control-group
+              %label.control-label{for: "codigo", style: "width:auto;"} Código
+              .controls{style: "margin-left: 90px;"}
+                %input#codigo.span2{name: "codigo", type: "text"}
+
+        %div#retenciondiv
+          .span3
+            
+          .span3
+            .control-group
+              %label.control-label{for: "retencion", style: "width:auto;"} Retención
+              .controls{style: "margin-left: 90px;"}
+                %input#retencion.span2{name: "retencion", type: "text"}
+
+        
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "asigfam", style: "width:auto;"} Asig. Familiar
+              .controls{style: "margin-left: 90px;"}
+                %input#asigfam.span2{name: "asigfam", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "retencion", style: "width:auto;"} Gratificación
+              .controls{style: "margin-left: 90px;"}
+                %label.checkbox
+                  %input#yes{type: "checkbox"} Si
+                %label.checkbox
+                  %input#no{type: "checkbox"} No
+        %div
+
+     
+      %fieldset
+        %legend Descuento
+        %div
+
+          %div
+            .span6
+              .control-group
+                %label.control-label{for: "aportobl", style: "width:auto;"} Aporte Obligatorio
+                .controls{style: "margin-left: 90px;"}
+                  = text_field_tag :aportobl, '', :class=>'span2'
+
+            .span3
+              .control-group
+                %label.control-label{for: "cons", style: "width:auto;"} Consumo P.A
+                .controls{style: "margin-left: 90px;"}
+                  = text_field_tag :cons, '', :class=> 'span2'   
+
+
+          %div
+            .span6
+              .control-group
+                %label.control-label{for: "primaseg", style: "width:auto;"} Primar por Seguro
+                .controls{style: "margin-left: 90px;"}
+                  = text_field_tag :primaseg, '', :class=> 'span2'
+
+            
+        %fieldset
+          %legend Aporte del Empleador
+          %div
+            .span6
+              .control-group
+                %label.control-label{for: "essalud", style: "width:auto;"} ESSALUD
+                .controls{style: "margin-left: 90px;"}
+                  = text_field_tag :essalud, '', :class=>'span2'
+
+            .span3
+              .control-group
+                %label.control-label{for: "sctr", style: "width:auto;"} SCTR
+                .controls{style: "margin-left: 90px;"}
+                  = text_field_tag :sctr, '', :class=> 'span2'
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+  / Modal
+
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalGenerar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      %fieldset
+        %legend Boleta de pago Empleados
+        %div
+          .span6
+            .control-group
+              %label.control-label{for: "empleado", style: "width:auto;"} Empleado
+              .controls{style: "margin-left: 90px;"}
+                %label#empleado      
+
+          .span3
+            .control-group
+              %label.control-label{for: "retiro", style: "width:auto;"} Fecha retiro
+              .controls{style: "margin-left: 90px;"}
+                %label#retiro
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "area", style: "width:auto;"} Area
+              .controls{style: "margin-left: 90px;"}
+                %label#area
+
+          .span3
+            .control-group
+              %label.control-label{for: "dni", style: "width:auto;"} DNI
+              .controls{style: "margin-left: 90px;"}
+                %label#dni
+
+          .span3
+            .control-group
+              %label.control-label{for: "dvac", style: "width:auto;"} Días Vac.
+              .controls{style: "margin-left: 90px;"}
+                %label#dvac
+
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "cargo", style: "width:auto;"} Cargo
+              .controls{style: "margin-left: 90px;"}
+                %label#cargo
+
+          .span3
+            .control-group
+              %label.control-label{for: "fingreso", style: "width:auto;"} Fecha Ingreso
+              .controls{style: "margin-left: 90px;"}
+                %label#fingreso
+
+          .span3
+            .control-group
+              %label.control-label{for: "essalud", style: "width:auto;"} N° ESSALUD
+              .controls{style: "margin-left: 90px;"}
+                %label#essalud
+
+          
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "sueldo", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                %label#sueldo
+
+
+          .span6
+            .control-group
+              %label.control-label{for: "hnotra", style: "width:auto;"} Horas no Trab.
+              .controls{style: "margin-left: 90px;"}
+                %label#hnotra
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "htrab", style: "width:auto;"} Horas Trabajadas
+              .controls{style: "margin-left: 90px;"}
+                %label#htrab
+
+
+          .span6
+            .control-group
+              %label.control-label{for: "sistpen", style: "width:auto;"} Sist. Pensión
+              .controls{style: "margin-left: 90px;"}
+                %label#sistpen
+
+      %fieldset
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Ingresos
+              %th Descuentos
+              %th Aporte del empleador
+          %tbody
+            %tr
+              %td Remuneración Bbsica:
+              %td Descuento por horas:
+              %td ESSALUD:
+            %tr
+              %td Vacaciones:
+              %td Aporte Obligatorio:
+              %td SCTR: 
+            %tr
+              %td Bonificación:
+              %td Prima de Seguro:
+              %td
+            %tr
+              %td Gratificación
+              %td Comisión sobre P.A.
+              %td
+
+            %tr
+              %td Aportación Familiar
+              %td Retención por Imprenta:
+              %td
+          %tfood
+            %tr
+              %td Total Ingresos:
+              %td Total Descuentos:
+              %td Total Aportes
+
+            %tr
+              %td Total Neto: 
+              %td
+              %td
+              
+
+        
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Registrar
+  / Modal
+

@@ -1,7 +1,7 @@
 .widget.widget-nopad
   .widget-header
     %i.icon-search
-    %h3 Enviados
+    %h3 Planilla
     %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
       %i.icon-plus{style: "margin:0; "}
   .widget-content
@@ -73,6 +73,14 @@
                 %a.btn.btn-primary{"data-toggle" => "modal", href: "#ModalRenovar"}
                   %i.icon-file-alt
                   Renovar
+
+        %div
+          .span3
+          .span3
+          .span3
+            %label.control-label{for: "buscar"}
+              .controls
+                %button.btn.btn-primary{type: "submit"} Generar
 
 
 
