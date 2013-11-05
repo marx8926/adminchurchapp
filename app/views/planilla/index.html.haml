@@ -1,0 +1,729 @@
+.widget.widget-nopad
+  .widget-header
+    %i.icon-search
+    %h3 Enviados
+    %a.btn{"data-toggle" => "modal", href: "#ModalRegistrar", style: "float: right; margin: 6px;"}
+      %i.icon-plus{style: "margin:0; "}
+  .widget-content
+    .widget.big-stats-container
+      .widget-content
+        %br/
+        = form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+          %fieldset
+            .span3
+              .control-group
+                %label.control-label{for: "nomap"} Nombres y Apellidos
+                .controls
+                  = text_field_tag :nomap
+
+            .span3
+              .control-group
+                %label.control-label{for: "cargo"} Cargo
+                .controls
+                  = select_tag :cargo
+
+          %fieldset
+            .span3
+              .control-group
+                %label.control-label{for: "area"} Area
+                .controls
+                  = select_tag :area
+
+            .span3
+              .control-group
+                %label.control-label{for: "planilla"} Planilla
+                .controls
+                  %label.checkbox
+                    %input#yes{type: "checkbox"} Si
+                  %label.checkbox
+                    %input#no{type: "checkbox"} No
+
+            .span3
+              .control-group
+                %label.control-label{for: "buscar"}
+                .controls
+                  %button.btn.btn-primary{type: "submit"} Buscar
+
+            
+              / /controls
+            / /control-group
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nombres y apellidos
+              %th Area
+              %th Cargo
+              %th Planilla
+              %th Estado
+              %th.td-actions
+          %tbody
+            %tr
+              %td Fresh
+              %td http:
+              %td Fresh
+              %td http:
+              %th Fresh
+              %td.td-actions
+                %a.btn.btn-warning{"data-toggle" => "modal", href: "#ModalEditar"}
+                  %i.icon-file-alt
+                  Editar
+                %a.btn.btn-info{"data-toggle" => "modal", href: "#ModalVista"}
+                  %i.icon-file-alt
+                  Vista
+                %a.btn.btn-primary{"data-toggle" => "modal", href: "#ModalRenovar"}
+                  %i.icon-file-alt
+                  Renovar
+
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalRegistrar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Registrar
+    .modal-body
+      %fieldset
+        %legend Datos Personales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "nombre", style: "width:auto;"} Nombres
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :nombre, '', :class=>'span2'           
+
+          .span3
+            .control-group
+              %label.control-label{for: "apellido", style: "width:auto;"} Apellidos
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :apellido, '', :class=> 'span2'
+
+          .span3
+            .control-group
+              %label.control-label{for: "dni", style: "width:auto;"} DNI
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :dni, '', :class=> 'span2'
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "fec_nac", style: "width:auto;"} F. Nacimiento
+              .controls{style: "margin-left: 90px;"}
+                %input#fec_nac.span2.datepicker{name: "fec_nac", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "e_civil", style: "width:auto;"} Estado Civil
+              .controls{style: "margin-left: 90px;"}
+                %select#e_civil.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "telf", style: "width:auto;"} Telefono
+              .controls{style: "margin-left: 90px;"}
+                %input#telf.span2{name: "telf", type: "text"}
+
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "direccion", style: "width:auto;"} Direccion
+              .controls{style: "margin-left: 90px;"}
+                %input#direccion.span2{name: "direccion", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "email", style: "width:auto;"} Email
+              .controls{style: "margin-left: 90px;"}
+                %input#email.span2{name: "email", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "cell", style: "width:auto;"} Celular
+              .controls{style: "margin-left: 90px;"}
+                %input#cell.span2{name: "cell", type: "text"}
+
+      %fieldset
+        %legend Datos Laborales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "area", style: "width:auto;"} Area
+              .controls{style: "margin-left: 90px;"}
+                %select#area.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "cargo", style: "width:auto;"} Cargo
+              .controls{style: "margin-left: 90px;"}
+                %select#cargo.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "sueldo", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                %input#sueldo.span2{name: "sueldo", type: "text"}
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "inicio", style: "width:auto;"} Inicio
+              .controls{style: "margin-left: 90px;"}
+                %input#inicio.span2{name: "inicio", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "contrato", style: "width:auto;"} Contrato
+              .controls{style: "margin-left: 90px;"}
+                %select#contrato.span2{name: "contrato"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "tiempocontrato", style: "width:auto;"}T. Contrato
+              .controls{style: "margin-left: 90px;"}
+                %input#tiempocontrato.span1{name: "tiempocontrato", type:"number"}
+                %select#tiempo.span1
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "pago", style: "width:auto;"} Pago
+              .controls{style: "margin-left: 90px;"}
+                %select#pago.span2{name: "pago"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "fpago", style: "width:auto;"} Forma de pago
+              .controls{style: "margin-left: 90px;"}
+                %select#fpago.span2{name: "fpago"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "ncuenta", style: "width:auto;"} N° Cuenta
+              .controls{style: "margin-left: 90px;"}
+                %input#ncuenta.span2{name: "ncuenta", type: "text"}
+
+        %div
+          %span3
+            .control-group
+              %label.control-label{for: "hdia", style: "width:auto;"} Horas por día
+              .controls{style: "margin-left: 90px;"}
+                %input#hdia.span2{name: "hdia", type: "number"}
+
+          %span4
+            .control-group
+              %label.control-label{for: "planilla", style: "width:auto;"} Planilla
+              .controls{style: "margin-left: 90px;"}
+                %label.checkbox
+                  %input#yes{type: "checkbox"} Si
+                %label.checkbox
+                  %input#not{type: "checkbox"} No
+
+
+      %fieldset
+        %legend Ingresos al Trabajador
+        %div.span6
+          .control-group
+            %label.control-label{for: "afamiliar", style: "width:auto;"} Asignación </br> Familiar
+            .controls{style: "margin-left: 90px;"}
+              %label.checkbox
+                %input#si{type: "checkbox"} Si
+              %label.checkbox
+                %input#no{type: "checkbox"} No
+        %div
+          .span4
+            .control-group
+              %label.control-label{for: "spension", style: "width:auto;"} Sist. Pensiones
+              .controls{style: "margin-left: 90px;"}
+                %select#spension.span2
+
+          .span4
+            .control-group
+              %label.control-label{for: "tafp", style: "width:auto;"} Tipo AFP
+              .controls{style: "margin-left: 90px;"}
+                %select#tafp.span2
+
+
+
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Registrar
+  / Modal
+
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalEditar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      %fieldset
+        %legend Datos Personales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :nombre, '', :class=>'span2'           
+
+          .span3
+            .control-group
+              %label.control-label{for: "apellido", style: "width:auto;"} Apellidos
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :apellido, '', :class=> 'span2'
+
+          .span3
+            .control-group
+              %label.control-label{for: "dni", style: "width:auto;"} DNI
+              .controls{style: "margin-left: 90px;"}
+                = text_field_tag :dni, '', :class=> 'span2'
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "fec_nac", style: "width:auto;"} F. Nacimiento
+              .controls{style: "margin-left: 90px;"}
+                %input#fec_nac.span2.datepicker{name: "fec_nac", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "e_civil", style: "width:auto;"} Estado Civil
+              .controls{style: "margin-left: 90px;"}
+                %select#e_civil.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "telf", style: "width:auto;"} Telefono
+              .controls{style: "margin-left: 90px;"}
+                %input#telf.span2{name: "telf", type: "text"}
+
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "direccion", style: "width:auto;"} Direccion
+              .controls{style: "margin-left: 90px;"}
+                %input#direccion.span2{name: "direccion", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "email", style: "width:auto;"} Email
+              .controls{style: "margin-left: 90px;"}
+                %input#email.span2{name: "email", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "cell", style: "width:auto;"} Celular
+              .controls{style: "margin-left: 90px;"}
+                %input#cell.span2{name: "cell", type: "text"}
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "estado", style: "width:auto;"} Estado
+              .controls{style: "margin-left: 90px;"}
+                %select#estado.span2{name:"estado"}
+
+
+
+          .span6
+            .control-group
+              %label.control-label{for: "fec_vagacion", style: "width:auto;"} F. Vacaciones
+              .controls{style: "margin-left: 90px;"}
+                %input#fec_ini.span2.datepicker{name: "fec_ini", type: "text"}
+                %input#fec_fin.span2.datepicker{name: "fec_fin", type: "text"}
+
+        %div
+          .span8
+            .control-group
+              %label.control-label{for: "motivo", style: "width:auto;"} Motivo
+              .controls{style: "margin-left: 90px;"}
+                %textarea#motivo.span6{style:"width:auto;", name: "motivo", rows: '4', cols: '100'}
+
+      %fieldset
+        %legend Datos Laborales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "area", style: "width:auto;"} Area
+              .controls{style: "margin-left: 90px;"}
+                %select#area.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "cargo", style: "width:auto;"} Cargo
+              .controls{style: "margin-left: 90px;"}
+                %select#cargo.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "sueldo", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                %input#sueldo.span2{name: "sueldo", type: "text"}
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "inicio", style: "width:auto;"} Inicio
+              .controls{style: "margin-left: 90px;"}
+                %input#inicio.span2{name: "inicio", type: "text"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "contrato", style: "width:auto;"} Contrato
+              .controls{style: "margin-left: 90px;"}
+                %select#contrato.span2{name: "contrato"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "tiempocontrato", style: "width:auto;"}T. Contrato
+              .controls{style: "margin-left: 90px;"}
+                %input#tiempocontrato.span1{name: "tiempocontrato", type:"number"}
+                %select#tiempo.span1
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "pago", style: "width:auto;"} Pago
+              .controls{style: "margin-left: 90px;"}
+                %select#pago.span2{name: "pago"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "fpago", style: "width:auto;"} Forma de pago
+              .controls{style: "margin-left: 90px;"}
+                %select#fpago.span2{name: "fpago"}
+
+          .span3
+            .control-group
+              %label.control-label{for: "ncuenta", style: "width:auto;"} N° Cuenta
+              .controls{style: "margin-left: 90px;"}
+                %input#ncuenta.span2{name: "ncuenta", type: "text"}
+
+        %div
+          %span3
+            .control-group
+              %label.control-label{for: "hdia", style: "width:auto;"} Horas por día
+              .controls{style: "margin-left: 90px;"}
+                %input#hdia.span2{name: "hdia", type: "number"}
+
+          %span4
+            .control-group
+              %label.control-label{for: "planilla", style: "width:auto;"} Planilla
+              .controls{style: "margin-left: 90px;"}
+                %label.checkbox
+                  %input#yes{type: "checkbox"} Si
+                %label.checkbox
+                  %input#not{type: "checkbox"} No
+
+
+      %fieldset
+        %legend Ingresos al Trabajador
+        %div.span6
+          .control-group
+            %label.control-label{for: "afamiliar", style: "width:auto;"} Asignación </br> Familiar
+            .controls{style: "margin-left: 90px;"}
+              %label.checkbox
+                %input#si{type: "checkbox"} Si
+              %label.checkbox
+                %input#no{type: "checkbox"} No
+        %div
+          .span4
+            .control-group
+              %label.control-label{for: "spension", style: "width:auto;"} Sist. Pensiones
+              .controls{style: "margin-left: 90px;"}
+                %select#spension.span2
+
+          .span4
+            .control-group
+              %label.control-label{for: "tafp", style: "width:auto;"} Tipo AFP
+              .controls{style: "margin-left: 90px;"}
+                %select#tafp.span2
+
+
+
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Registrar
+  / Modal
+
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalVista.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      %fieldset
+        %legend Datos Personales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "nombre", style: "width:auto;"} Nombre
+              .controls{style: "margin-left: 90px;"}
+                %label#nombre         
+
+          .span3
+            .control-group
+              %label.control-label{for: "apellido", style: "width:auto;"} Apellidos
+              .controls{style: "margin-left: 90px;"}
+                %label#apellido
+
+          .span3
+            .control-group
+              %label.control-label{for: "dni", style: "width:auto;"} DNI
+              .controls{style: "margin-left: 90px;"}
+                %label#dni
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "fec_nac", style: "width:auto;"} F. Nacimiento
+              .controls{style: "margin-left: 90px;"}
+                %label#fec_nac
+
+          .span3
+            .control-group
+              %label.control-label{for: "e_civil", style: "width:auto;"} Estado Civil
+              .controls{style: "margin-left: 90px;"}
+                %label#e_civil
+
+          .span3
+            .control-group
+              %label.control-label{for: "telf", style: "width:auto;"} Telefono
+              .controls{style: "margin-left: 90px;"}
+                %label#telf
+
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "direccion", style: "width:auto;"} Direccion
+              .controls{style: "margin-left: 90px;"}
+                %label#direccion
+
+          .span3
+            .control-group
+              %label.control-label{for: "email", style: "width:auto;"} Email
+              .controls{style: "margin-left: 90px;"}
+                %label#email
+
+          .span3
+            .control-group
+              %label.control-label{for: "cell", style: "width:auto;"} Celular
+              .controls{style: "margin-left: 90px;"}
+                %label#cell
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "estado", style: "width:auto;"} Estado
+              .controls{style: "margin-left: 90px;"}
+                %label#estado
+
+
+          .span6
+            .control-group
+              %label.control-label{for: "fec_vagacion", style: "width:auto;"} F. Vacaciones
+              .controls{style: "margin-left: 90px;"}
+                %label#fec_ini
+                %label#fec_fin
+
+        %div
+          .span8
+            .control-group
+              %label.control-label{for: "motivo", style: "width:auto;"} Motivo
+              .controls{style: "margin-left: 90px;"}
+                %label#motivo
+
+      %fieldset
+        %legend Datos Laborales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "area", style: "width:auto;"} Area
+              .controls{style: "margin-left: 90px;"}
+                %label#area
+
+          .span3
+            .control-group
+              %label.control-label{for: "cargo", style: "width:auto;"} Cargo
+              .controls{style: "margin-left: 90px;"}
+                %label#cargo
+
+          .span3
+            .control-group
+              %label.control-label{for: "sueldo", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                %label#sueldo
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "inicio", style: "width:auto;"} Inicio
+              .controls{style: "margin-left: 90px;"}
+                %label#inicio
+
+          .span3
+            .control-group
+              %label.control-label{for: "contrato", style: "width:auto;"} Contrato
+              .controls{style: "margin-left: 90px;"}
+                %label#contrato
+
+          .span3
+            .control-group
+              %label.control-label{for: "tiempocontrato", style: "width:auto;"}T. Contrato
+              .controls{style: "margin-left: 90px;"}
+                %label#tiempocontrato
+
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "pago", style: "width:auto;"} Pago
+              .controls{style: "margin-left: 90px;"}
+                %label#pago
+
+          .span3
+            .control-group
+              %label.control-label{for: "fpago", style: "width:auto;"} Forma de pago
+              .controls{style: "margin-left: 90px;"}
+                %label#fpago
+
+          .span3
+            .control-group
+              %label.control-label{for: "ncuenta", style: "width:auto;"} N° Cuenta
+              .controls{style: "margin-left: 90px;"}
+                %label#ncuenta
+
+        %div
+          %span3
+            .control-group
+              %label.control-label{for: "hdia", style: "width:auto;"} Horas por día
+              .controls{style: "margin-left: 90px;"}
+                %label#hdia
+
+          %span4
+            .control-group
+              %label.control-label{for: "planilla", style: "width:auto;"} Planilla
+              .controls{style: "margin-left: 90px;"}
+                %label#planilla
+
+
+      %fieldset
+        %legend Ingresos al Trabajador
+        %div.span6
+          .control-group
+            %label.control-label{for: "afamiliar", style: "width:auto;"} Asignación </br> Familiar
+            .controls{style: "margin-left: 90px;"}
+              %label#asignacionf
+        %div
+          .span4
+            .control-group
+              %label.control-label{for: "spension", style: "width:auto;"} Sist. Pensiones
+              .controls{style: "margin-left: 90px;"}
+                %label#spension
+
+          .span4
+            .control-group
+              %label.control-label{for: "tafp", style: "width:auto;"} Tipo AFP
+              .controls{style: "margin-left: 90px;"}
+                %label#tafp
+
+
+
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Registrar
+  / Modal
+
+
+= form_tag( ganar_guardar_path,{:method=>'post',:class=>'form-horizontal'}) do
+
+  / Modal
+  #ModalRenovar.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3#myModalLabel Editar
+    .modal-body
+      
+      %fieldset
+        %legend Datos Laborales
+        %div
+          .span3
+            .control-group
+              %label.control-label{for: "area", style: "width:auto;"} Area
+              .controls{style: "margin-left: 90px;"}
+                %select#area.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "cargo", style: "width:auto;"} Cargo
+              .controls{style: "margin-left: 90px;"}
+                %select#cargo.span2
+
+          .span3
+            .control-group
+              %label.control-label{for: "sueldo", style: "width:auto;"} Sueldo
+              .controls{style: "margin-left: 90px;"}
+                %input#sueldo.span2{name: "sueldo", type: "text"}
+
+        %div
+         
+          .span6
+            .control-group
+              %label.control-label{for: "tiempocontrato", style: "width:auto;"} Ampliación de Contrato
+              .controls{style: "margin-left: 90px;"}
+                %input#tiempocontrato.span1{name: "tiempocontrato", type:"number"}
+                %select#tiempo.span1
+
+        %div    
+          %span6
+            .control-group
+              %label.control-label{for: "planilla", style: "width:auto;"} Planilla
+              .controls{style: "margin-left: 90px;"}
+                %label.checkbox
+                  %input#yes{type: "checkbox"} Si
+                %label.checkbox
+                  %input#not{type: "checkbox"} No
+
+
+      %fieldset
+        %legend Ingresos al Trabajador
+        %div.span6
+          .control-group
+            %label.control-label{for: "afamiliar", style: "width:auto;"} Asignación </br> Familiar
+            .controls{style: "margin-left: 90px;"}
+              %label.checkbox
+                %input#si{type: "checkbox"} Si
+              %label.checkbox
+                %input#no{type: "checkbox"} No
+        %div
+          .span4
+            .control-group
+              %label.control-label{for: "spension", style: "width:auto;"} Sist. Pensiones
+              .controls{style: "margin-left: 90px;"}
+                %select#spension.span2
+
+          .span4
+            .control-group
+              %label.control-label{for: "tafp", style: "width:auto;"} Tipo AFP
+              .controls{style: "margin-left: 90px;"}
+                %select#tafp.span2
+
+
+
+              
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
+      %button.btn.btn-primary{type: "submit"} Guardar
+

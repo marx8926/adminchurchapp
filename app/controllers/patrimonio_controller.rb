@@ -8,6 +8,8 @@ class PatrimonioController < ApplicationController
 		@title = "Ambiente"
 	end
 
+	
+
 	def asignacionambiente
 		@title = "Asignacion de ambiente"
 	end

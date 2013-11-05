@@ -148,10 +148,7 @@ ActiveRecord::Schema.define(version: 20131101133948) do
     t.integer  "int_persona_diaVisita"
     t.time     "dat_persona_horaVisita"
     t.string   "var_persona_email"
-    t.integer  "persona_id"
   end
-
-  add_index "personas", ["persona_id"], name: "index_personas_on_persona_id", using: :btree
 
   create_table "plantrabajos", primary_key: "int_plantrabajo", force: true do |t|
     t.integer  "int_plantrabajo_anio"
