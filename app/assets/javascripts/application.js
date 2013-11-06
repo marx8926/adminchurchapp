@@ -21,3 +21,5 @@
 //= require mapa/jquery-gmaps-lation-picker
 //= require util/functiongen.js
 //= require bootstrap-timepicker.min
+//= require datatables/jquery.dataTables.min.js
+//= require util/datatable_plugins.js

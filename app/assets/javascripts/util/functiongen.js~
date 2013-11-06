@@ -66,15 +66,6 @@ function SubTablaArray(Table, Array, attr){
 /*
  * Nesesita tener definido el atributo cantidad
  */
-
-function sumColArray(Array,attr){
-	var total = 0;
-	$(Array).each(function(index){
-		total += this[attr];
-	});
-	return total;
-}
-
 function sumArrayByAttr(Array2,attr,attrresult,attrcondicion){
 	var total = 0;
 	$(Array2).each(function( index ){
@@ -131,9 +122,8 @@ function enviar(IdForm,successfunction,otherdata, errorfunction){
 	      	  url: url,
 	      	  data: { formulario:$("#"+IdForm).serialize(),otherdata:otherdata }
 	      	});
-     
+        
         Consulta.done(function( data ) {
-            
       	  if(data.responseCode==200 ){
 				if(typeof(successfunction)=== 'undefined' || successfunction == null)
 					console.log("no function");
@@ -160,21 +150,10 @@ function enviar(IdForm,successfunction,otherdata, errorfunction){
 function createDataTable(idTable,UrlaDTable,FormatoDTable, CallBackFunction, RowCallBackFunction){
 	
 	oTable = $('#'+idTable).dataTable({
-		"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		"iDisplayLength": 25,
 		"bProcessing": true,
 		"bServerSide": false,
 		"bDestroy": true,
-		"sAjaxSource": UrlaDTable,
-		"fnServerData": function( sUrl, aoData, fnCallback, oSettings ) {
-            oSettings.jqXHR = $.ajax( {
-                "url": sUrl,
-                "data": aoData,
-                "success": fnCallback,
-                "dataType": "json",
-                "cache": false
-            } );
-        },
+		"sAjaxSource": UrlaDTable,	  
 		"aoColumns": FormatoDTable,				             
 	 	"aaSorting": [ [0, 'asc'], [1, 'asc'] ],
 	 	"fnCreatedRow": function( nRow, aData, iDisplayIndex ) {
@@ -190,15 +169,14 @@ function createDataTable(idTable,UrlaDTable,FormatoDTable, CallBackFunction, Row
 		 	},
 		 	
 	 	"aoColumnDefs": [
-	                  {"sType": 'string-case', "aTargets": [1]}
-	                  ],
+	                  {"sType": 'string-case', "aTargets": [2]}],
 	 	
 	 	
 		 	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
 		 	"sPaginationType": "bootstrap",
 		 	"oLanguage": {
-		 		"sUrl": urlES
-			} 		            
+			"sLengthMenu": "_MENU_ registros por página"
+				} 		            
 	
 		});
 	return oTable;
@@ -252,7 +230,7 @@ function ajaxResponseData(namediv,path){
         url: path,
         async: false
         }).responseText;
-		$('#'+namediv).html(data);
+	$('#'+namediv).html(data);
 }
 
 function ajaxResponseDataPost(namediv,path){
@@ -295,6 +273,7 @@ jQuery.fn.reset = function () {
 function reloadTable(oTable){
 	var returnfunction = function(data){
 		oTable.fnReloadAjax();
+		console.log(data);
 		};
 	return returnfunction;
 }
@@ -302,7 +281,7 @@ function reloadTable(oTable){
 function reloadclosemodal(idmodal,idaTable){
 	var returnfunction = function(data){
 		$('#'+idaTable).dataTable().fnReloadAjax();
-		//console.log(data);
+		console.log(data);
 		$('#'+idmodal).modal('hide');
 		$('#'+idmodal+" form").reset();
 		};
@@ -321,13 +300,13 @@ function crearElementosForm(Array){
 			$fielset.append('<h3>'+this.label+'</h3>');
 			break;
 		case 'actions':
-			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>  <button type="submit" id="btn_submit" class="btn btn-primary">Guardar</button>');
+			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>  <button type="submit" class="btn btn-primary">Guardar</button>');
 			break;
 		case 'close':
 			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cerrar</button>');
 			break;
 		case 'hidden':
-			$fielset.append('<input type="hidden" id="'+this.name+'" name="'+this.name+'" value="'+this.value+'">');
+			$fielset.append('<input type="hidden" name="'+this.name+'" value="'+this.value+'">');
 			break;
 		default:
 			$div_control_group = $('<div class="control-group">');
@@ -357,7 +336,7 @@ function addElemento(obj){
 	    		$elem.val(obj.value);
 	    		break;
 	    case 'file':
-	    		$elem = $('<input type="file" class="input-xlarge" id="'+obj.name+'" name="'+obj.name+'">');
+	    		$elem = $('<input type="file" class="input-xlarge" name="'+obj.name+'">');
 	    		break;
 	    case 'textarea':
 	    		$elem = $('<textarea class="input-xlarge" name="'+obj.name+'" rows="2" cols="" required="'+obj.req+'" maxlength="'+obj.max+'"></textarea>');
@@ -411,13 +390,6 @@ function cargarDist(idselect, ubigeo, iddepend){
 	$select.html(result); 
 }
 
-/* idtagdist:es el id del select que acumulara los options de los distritos
- * idtagprov:es el id del select que acumulara los options de los provincia
- * idtagdep:es el id del select que acumulara los options de los departamento
- * iddist: es el id por defecto que se le asignara al distrito
- * iddist: es el id por defecto que se le asignara a la provincia
- * iddep: es el id por defecto que se le asignara a departamento
- * */
 function cargarUbigeo(ubigeos, idtagdist, idtagprov, idtagdep, iddist, idprov, iddep){
 	
 	cargarDep(idtagdep, ubigeos);
@@ -450,23 +422,30 @@ function cargarUbigeo(ubigeos, idtagdist, idtagprov, idtagdep, iddist, idprov, i
 }
 /*--------------------------------FIN UBIGEO------------------------------------*/
 
-/*--------------------------------SELECT!!------------------------------------*/
-
 function cargarSelect(arreglo, idselect, attrvalue, attrdescripcion){
 	var $select = $('#'+idselect);
 	var result = '';
 	
 	$(arreglo).each(function(){
-		if(typeof(this[attrvalue]) != 'undefined')
-			result += '<option value="'+this[attrvalue]+'">'+this[attrdescripcion]+'</option>';		
+		result += '<option value="'+this[attrvalue]+'">'+this[attrdescripcion]+'</option>';		
 	});
 	$select.html(result);
 }
 /*------------------------------FECHAAAA------------------------------------------*/
 function fechaAhora(){
 	date = new Date();
-	Fecha = paddate(date.getDate())+"/"+paddate((date.getMonth()+1))+"/"+date.getFullYear();
-	return Fecha;
+	dia = '';
+	mes = '';
+	if(date.getDate() < 10)
+		dia = '0'+ (date.getDate());
+	else
+		dia = date.getDate();
+	if(date.getMonth()+1 < 10)
+		mes = '0'+ (date.getMonth() + 1);
+	else
+		mes = (date.getMonth() + 1);
+	fecha = dia + "/" + (mes) + "/" + date.getFullYear();
+	return fecha;
 }
 
 function toHTML(element){
@@ -476,79 +455,24 @@ function toHTML(element){
 }
 
 /*-------------------------------- Crear Tabla ------------------------------------*/
-function crearTablaToArray(Idtable,Head,HeadExt,Attr,AttrExt,Array){
-	var table = $("<table id='"+Idtable+"'>");
+function crearTablaToArray(Head,Attr,Array){
+	var table = $("<table>");
 	var thead = $("<thead>");
 	var tbody = $("<tbody>");
 	var trh = $("<tr>");
-	if(Head != null){
-		for (var i = 0 ; i< Head.length ; i++){
-			trh.append("<td "+HeadExt[i]+" >"+Head[i]+"</td>");
-		}
-		thead.append(trh);
-		table.append(thead);
+	for (var i = 0 ; i< Head.length ; i++){
+		trh.append("<td>"+Head[i]+"</td>");
 	}
 	
 	$(Array).each(function(index){
 		var trb = $("<tr>");
 		for(var j = 0 ; j < Attr.length ; j++){
-			trb.append("<td "+AttrExt[j]+" >"+this[Attr[j]]+"</td>");
+			trb.append("<td>"+this[Attr[j]]+"</td>");
 		}
 		tbody.append(trb);
 	});
+	thead.append(trh);
+	table.append(thead);
 	table.append(tbody);
 	return table;
-}
-
-/* Recuperar la hora y el dia */
-function paddate(n){
-	return n<10 ? '0'+n : n;
-}
-
-function getHourFormato(){
-	date = new Date();
-	Hora = (date.getUTCHours()-5)+':'
-    + date.getUTCMinutes()+':'
-    + date.getUTCSeconds();
-	return Hora;
-}
-/*>>>>>>>>>>>>>>>>>>>>>>*/
-function uploadFile(nameInput, url, path,nameFile,finishUpload){
-	var file = new FileReader();
-	var inputFile  = $("#"+nameInput);
-	file = inputFile[0].files[0];
-	uploadSend(file, url, path,nameFile,finishUpload);
-	getExtFile(nameInput);
-}
-
-function uploadSend(file,url, path,nameFile,finishUpload) {
-	var xhr = new XMLHttpRequest(),
-    upload = xhr.upload;
-	upload.addEventListener("progress", function (ev) {
-	}, false);
-	
-	upload.addEventListener("load", function (ev) {
-		finishUpload();
-	}, false);
-	upload.addEventListener("error", function (ev) {console.log(ev);}, false);
-	xhr.open(
-	    "POST",
-	    url
-	);
-	xhr.setRequestHeader("Cache-Control", "no-cache");
-	xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	xhr.setRequestHeader("X-File-Name", nameFile);
-	xhr.setRequestHeader("X-Path", path);
-	xhr.send(file);
-}
-
-function getExtFile(nameinput) {
-	var file = new FileReader();
-	var inputFile  = $("#"+nameinput);
-	file = inputFile[0].files[0];
-    fic=file.name;
-    fic = fic.split('\\');
-    nom = fic[fic.length-1];
-    ext = nom.substr(nom.indexOf('.'),nom.length).toLowerCase();
-    return ext;
 }

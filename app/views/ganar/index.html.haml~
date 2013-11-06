@@ -140,7 +140,7 @@
                     .controls
                       %input#telefono.span2{name: "telefono", style: "margin-right:20px;", type: "text"}/
                       %label{style: "display: inline; margin-right:20px;"} Tipo
-                      %select#tipotel.span2{name: "tipotel"}
+                      %select#sexo.span2{name: "sexo"}
                         %option{value: "1"} Casa
                         %option{value: "2"} Móvil
                         %option{value: "3"} Trabajo
@@ -271,4 +271,77 @@
     .modal-footer
       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cancelar
       %button.btn.btn-primary{type: "submit"} Guardar
-  // Modal
+  / Modal
+= javascript_include_tag 'datatables/jquery.dataTables.min.js'
+:javascript
+  $(document).ready(function(){
+    ubigeos = getAjaxObject("https://s3.amazonaws.com/macn/ubi.json");   
+    cargarUbigeo(ubigeos, 'dist','prov','dep');
+
+    CuotasTable = $('#cuotas_table').dataTable({
+      "bProcessing": true,
+      "bServerSide": false,
+      "bDestroy": true,
+      "sAjaxSource": "{{ path('dicars_ventas_servicio_gettablacuotasbyId',{'idcredito':0}) }}",   
+      "aoColumns": [
+       { "sWidth": "15%","mDataProp": "fecpago"},
+       { "sWidth": "15%","mDataProp": "nrocuota"},
+       { "sWidth": "15%","mDataProp": "montoapg"},
+       { "sWidth": "15%","mDataProp": "montoapl"}
+       ],
+      "fnCreatedRow": function( nRow, aData, iDisplayIndex ) {
+        aData.band = 1;
+   
+                                                                                                                                                    },
+
+                                                                                                                                                        "fnDrawCallback": function(oSettings ){
+
+                                                                                                                                                                  setTimeout(function() {
+
+                                                                                                                                                                              if(Band){
+
+                                                                                                                                                                                            CloneAttr(CuotasTable.fnGetData(),'montoapl','cmonto');
+
+                                                                                                                                                                                                          
+
+                                                                                                                                                                                                            if(CuotasTable.fnGetData().length>0)
+
+                                                                                                                                                                                                                            Band = false;
+
+                                                                                                                                                                                                                                        }             
+
+                                                                                                                                                                                                                                                      });
+
+                                                                                                                                                                                                                                                                  },
+
+                                                                                                                                                                                                                                                                      "aaSorting": [ [0, 'asc'], [1, 'asc'] ],
+
+                                                                                                                                                                                                                                                                          "bPaginate": false,
+
+                                                                                                                                                                                                                                                                              "bLengthChange": false,
+
+                                                                                                                                                                                                                                                                                  "bFilter": true,
+
+                                                                                                                                                                                                                                                                                      "bSort": false,
+
+                                                                                                                                                                                                                                                                                          "bInfo": false,
+
+                                                                                                                                                                                                                                                                                              "bAutoWidth": false,
+
+                                                                                                                                                                                                                                                                                                  "aoColumnDefs": [
+
+                                                                                                                                                                                                                                                                                                                      {"sType": 'string-case', "aTargets": [2]}],
+
+                                                                                                                                                                                                                                                                                                                            "sDom": "<r>t<'row-fluid'>",
+
+                                                                                                                                                                                                                                                                                                                                  "sPaginationType": "bootstrap",
+
+                                                                                                                                                                                                                                                                                                                                        "oLanguage": {
+
+                                                                                                                                                                                                                                                                                                                                              "sLengthMenu": "_MENU_ registros por página"
+
+                                                                                                                                                                                                                                                                                                                                                      } 
+
+                                                                                                                                                                                                                                                                                                                                                          });
+
+  });
